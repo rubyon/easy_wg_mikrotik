@@ -1,16 +1,16 @@
 <div id="flash" class="fixed top-4 right-4 z-50">
   <% flash.each do |type, message| %>
-    <div class="mb-2 p-4 rounded-md shadow-lg <%= type == 'success' ? 'bg-green-500' : 'bg-red-500' %> text-white font-medium opacity-90 transition-opacity duration-300"
+    <div class="mb-2 px-4 py-2 rounded-md shadow-lg <%= type == 'success' ? 'bg-green-500' : 'bg-red-500' %> text-white font-medium opacity-90 transition-opacity duration-300"
          data-controller="flash"
          data-flash-auto-hide-value="true"
          data-flash-duration-value="3000"
          data-action="click->flash#close">
-      <div class="flex items-center justify-between">
+      <div class="flex items-center justify-between text-sm font-bold">
         <span><%= message %></span>
         <button type="button"
                 class="ml-4 text-white hover:text-gray-200"
                 data-action="click->flash#close">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-4 h-4" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
           </svg>
         </button>
