@@ -1,0 +1,377 @@
+# Department 'Performance' (50): 미수정
+# Supports --autocorrect
+Performance/AncestorsInclude:
+  Description: Use `A <= B` instead of `A.ancestors.include?(B)`.
+  Reference: https://github.com/fastruby/fast-ruby#ancestorsinclude-vs--code
+  Enabled: false
+  Safe: false
+  VersionAdded: '1.7'
+
+# Supports --autocorrect
+Performance/ArraySemiInfiniteRangeSlice:
+  Description: Identifies places where slicing arrays with semi-infinite ranges can
+    be replaced by `Array#take` and `Array#drop`.
+  Enabled: false
+  Safe: false
+  VersionAdded: '1.9'
+
+# Supports --autocorrect
+Performance/BigDecimalWithNumericArgument:
+  Description: Convert numeric literal to string and pass it to `BigDecimal`.
+  Enabled: false
+  VersionAdded: '1.7'
+
+# Supports --autocorrect
+Performance/BindCall:
+  Description: Use `bind_call(obj, args, ...)` instead of `bind(obj).call(args, ...)`.
+  Enabled: false
+  VersionAdded: '1.6'
+
+# Supports --autocorrect
+Performance/BlockGivenWithExplicitBlock:
+  Description: Check block argument explicitly instead of using `block_given?`.
+  Enabled: false
+  VersionAdded: '1.9'
+
+# Supports --autocorrect
+Performance/Caller:
+  Description: Use `caller(n..n)` instead of `caller`.
+  Enabled: false
+  VersionAdded: '0.49'
+  VersionChanged: '1.9'
+
+# Supports --autocorrect
+Performance/CaseWhenSplat:
+  Description: Reordering `when` conditions with a splat to the end of the `when` branches
+    can improve performance.
+  Enabled: false
+  SafeAutoCorrect: false
+  VersionAdded: '0.34'
+  VersionChanged: '1.13'
+
+# Supports --autocorrect
+Performance/Casecmp:
+  Description: Use `casecmp` rather than `downcase ==`, `upcase ==`, `== downcase`,
+    or `== upcase`..
+  Reference: https://github.com/fastruby/fast-ruby#stringcasecmp-vs--stringcasecmp-vs-stringdowncase---code
+  Enabled: false
+  Safe: false
+  VersionAdded: '0.36'
+  VersionChanged: '1.21'
+
+Performance/ChainArrayAllocation:
+  Description: Instead of chaining array methods that allocate new arrays, mutate an
+    existing array.
+  Reference: https://twitter.com/schneems/status/1034123879978029057
+  Enabled: false
+  VersionAdded: '0.59'
+
+Performance/CollectionLiteralInLoop:
+  Description: Extract Array and Hash literals outside of loops into local variables
+    or constants.
+  Enabled: false
+  VersionAdded: '1.8'
+  MinSize: 1
+
+# Supports --autocorrect
+Performance/CompareWithBlock:
+  Description: Use `sort_by(&:foo)` instead of `sort { |a, b| a.foo <=> b.foo }`.
+  Enabled: false
+  VersionAdded: '0.46'
+
+# Supports --autocorrect
+Performance/ConcurrentMonotonicTime:
+  Description: Use `Process.clock_gettime(Process::CLOCK_MONOTONIC)` instead of `Concurrent.monotonic_time`.
+  Reference: https://github.com/rails/rails/pull/43502
+  Enabled: false
+  VersionAdded: '1.12'
+
+# Supports --autocorrect
+Performance/ConstantRegexp:
+  Description: Finds regular expressions with dynamic components that are all constants.
+  Enabled: false
+  VersionAdded: '1.9'
+  VersionChanged: '1.10'
+
+# Supports --autocorrect
+Performance/Count:
+  Description: Use `count` instead of `{select,find_all,filter,reject}...{size,count,length}`.
+  SafeAutoCorrect: false
+  Enabled: false
+  VersionAdded: '0.31'
+  VersionChanged: '1.8'
+
+# Supports --autocorrect
+Performance/DeletePrefix:
+  Description: Use `delete_prefix` instead of `gsub`.
+  Enabled: false
+  Safe: false
+  SafeMultiline: true
+  VersionAdded: '1.6'
+  VersionChanged: '1.11'
+
+# Supports --autocorrect
+Performance/DeleteSuffix:
+  Description: Use `delete_suffix` instead of `gsub`.
+  Enabled: false
+  Safe: false
+  SafeMultiline: true
+  VersionAdded: '1.6'
+  VersionChanged: '1.11'
+
+# Supports --autocorrect
+Performance/Detect:
+  Description: Use `detect` instead of `select.first`, `find_all.first`, `filter.first`,
+    `select.last`, `find_all.last`, and `filter.last`.
+  Reference: https://github.com/fastruby/fast-ruby#enumerabledetect-vs-enumerableselectfirst-code
+  SafeAutoCorrect: false
+  Enabled: false
+  VersionAdded: '0.30'
+  VersionChanged: '1.8'
+
+# Supports --autocorrect
+Performance/DoubleStartEndWith:
+  Description: Use `str.{start,end}_with?(x, ..., y, ...)` instead of `str.{start,end}_with?(x,
+    ...) || str.{start,end}_with?(y, ...)`.
+  Enabled: false
+  VersionAdded: '0.36'
+  VersionChanged: '0.48'
+  IncludeActiveSupportAliases: false
+
+# Supports --autocorrect
+Performance/EndWith:
+  Description: Use `end_with?` instead of a regex match anchored to the end of a string.
+  Reference: https://github.com/fastruby/fast-ruby#stringmatch-vs-stringmatch-vs-stringstart_withstringend_with-code-start-code-end
+  SafeAutoCorrect: false
+  Enabled: false
+  SafeMultiline: true
+  VersionAdded: '0.36'
+  VersionChanged: '1.10'
+
+Performance/FixedSize:
+  Description: Do not compute the size of statically sized objects except in constants.
+  Enabled: false
+  VersionAdded: '0.35'
+
+# Supports --autocorrect
+Performance/FlatMap:
+  Description: Use `Enumerable#flat_map` instead of `Enumerable#map...Array#flatten(1)`
+    or `Enumerable#collect..Array#flatten(1)`.
+  Reference: https://github.com/fastruby/fast-ruby#enumerablemaparrayflatten-vs-enumerableflat_map-code
+  Enabled: true
+  VersionAdded: '0.30'
+  EnabledForFlattenWithoutParams: false
+
+# Supports --autocorrect
+Performance/InefficientHashSearch:
+  Description: Use `key?` or `value?` instead of `keys.include?` or `values.include?`.
+  Reference: https://github.com/fastruby/fast-ruby#hashkey-instead-of-hashkeysinclude-code
+  Enabled: false
+  VersionAdded: '0.56'
+  Safe: false
+
+# Supports --autocorrect
+Performance/IoReadlines:
+  Description: Use `IO.each_line` (`IO#each_line`) instead of `IO.readlines` (`IO#readlines`).
+  Reference: https://docs.gitlab.com/ee/development/performance.html#reading-from-files-and-other-data-sources
+  Enabled: false
+  VersionAdded: '1.7'
+
+# Supports --autocorrect
+Performance/MapCompact:
+  Description: Use `filter_map` instead of `collection.map(&:do_something).compact`.
+  Enabled: false
+  SafeAutoCorrect: false
+  VersionAdded: '1.11'
+
+Performance/MapMethodChain:
+  Description: Checks if the `map` method is used in a chain.
+  Enabled: false
+  Safe: false
+  VersionAdded: '1.19'
+
+Performance/MethodObjectAsBlock:
+  Description: Use block explicitly instead of block-passing a method object.
+  Reference: https://github.com/fastruby/fast-ruby#normal-way-to-apply-method-vs-method-code
+  Enabled: false
+  VersionAdded: '1.9'
+
+Performance/OpenStruct:
+  Description: Use `Struct` instead of `OpenStruct`.
+  Enabled: false
+  VersionAdded: '0.61'
+  Safe: false
+
+# Supports --autocorrect
+Performance/RangeInclude:
+  Description: Use `Range#cover?` instead of `Range#include?` (or `Range#member?`).
+  Reference: https://github.com/fastruby/fast-ruby#cover-vs-include-code
+  Enabled: false
+  VersionAdded: '0.36'
+  VersionChanged: '1.7'
+  Safe: false
+
+# Supports --autocorrect
+Performance/RedundantBlockCall:
+  Description: Use `yield` instead of `block.call`.
+  Reference: https://github.com/fastruby/fast-ruby#proccall-and-block-arguments-vs-yieldcode
+  Enabled: false
+  VersionAdded: '0.36'
+
+# Supports --autocorrect
+Performance/RedundantEqualityComparisonBlock:
+  Description: Checks for uses `Enumerable#all?`, `Enumerable#any?`, `Enumerable#one?`,
+    or `Enumerable#none?` are compared with `===` or similar methods in block.
+  Reference: https://github.com/rails/rails/pull/41363
+  Enabled: false
+  Safe: false
+  AllowRegexpMatch: true
+  VersionAdded: '1.10'
+
+# Supports --autocorrect
+Performance/RedundantMatch:
+  Description: Use `=~` instead of `String#match` or `Regexp#match` in a context where
+    the returned `MatchData` is not needed.
+  Enabled: false
+  VersionAdded: '0.36'
+
+# Supports --autocorrect
+Performance/RedundantMerge:
+  Description: Use Hash#[]=, rather than Hash#merge! with a single key-value pair.
+  Reference: https://github.com/fastruby/fast-ruby#hashmerge-vs-hash-code
+  Enabled: false
+  Safe: false
+  VersionAdded: '0.36'
+  VersionChanged: '1.11'
+  MaxKeyValuePairs: 2
+
+# Supports --autocorrect
+Performance/RedundantSortBlock:
+  Description: Use `sort` instead of `sort { |a, b| a <=> b }`.
+  Enabled: false
+  VersionAdded: '1.7'
+
+# Supports --autocorrect
+Performance/RedundantSplitRegexpArgument:
+  Description: Identifies places where `split` argument can be replaced from a deterministic
+    regexp to a string.
+  Enabled: false
+  VersionAdded: '1.10'
+
+# Supports --autocorrect
+Performance/RedundantStringChars:
+  Description: Checks for redundant `String#chars`.
+  Enabled: false
+  VersionAdded: '1.7'
+
+# Supports --autocorrect
+Performance/RegexpMatch:
+  Description: Use `match?` instead of `Regexp#match`, `String#match`, `Symbol#match`,
+    `Regexp#===`, or `=~` when `MatchData` is not used.
+  Reference: https://github.com/fastruby/fast-ruby#regexp-vs-regexpmatch-vs-regexpmatch-vs-stringmatch-vs-string-vs-stringmatch-code-
+  Enabled: false
+  VersionAdded: '0.47'
+
+# Supports --autocorrect
+Performance/ReverseEach:
+  Description: Use `reverse_each` instead of `reverse.each`.
+  Reference: https://github.com/fastruby/fast-ruby#enumerablereverseeach-vs-enumerablereverse_each-code
+  Enabled: false
+  VersionAdded: '0.30'
+
+# Supports --autocorrect
+Performance/ReverseFirst:
+  Description: Use `last(n).reverse` instead of `reverse.first(n)`.
+  Enabled: false
+  VersionAdded: '1.7'
+
+Performance/SelectMap:
+  Description: Use `filter_map` instead of `ary.select(&:foo).map(&:bar)`.
+  Enabled: false
+  VersionAdded: '1.11'
+
+# Supports --autocorrect
+Performance/Size:
+  Description: Use `size` instead of `count` for counting the number of elements in
+    `Array` and `Hash`.
+  Reference: https://github.com/fastruby/fast-ruby#arraylength-vs-arraysize-vs-arraycount-code
+  Enabled: false
+  VersionAdded: '0.30'
+
+# Supports --autocorrect
+Performance/SortReverse:
+  Description: Use `sort.reverse` instead of `sort { |a, b| b <=> a }`.
+  Enabled: false
+  VersionAdded: '1.7'
+
+# Supports --autocorrect
+Performance/Squeeze:
+  Description: Use `squeeze('a')` instead of `gsub(/a+/, 'a')`.
+  Reference: https://github.com/fastruby/fast-ruby#remove-extra-spaces-or-other-contiguous-characters-code
+  Enabled: false
+  VersionAdded: '1.7'
+
+# Supports --autocorrect
+Performance/StartWith:
+  Description: Use `start_with?` instead of a regex match anchored to the beginning
+    of a string.
+  Reference: https://github.com/fastruby/fast-ruby#stringmatch-vs-stringmatch-vs-stringstart_withstringend_with-code-start-code-end
+  SafeAutoCorrect: false
+  Enabled: false
+  SafeMultiline: true
+  VersionAdded: '0.36'
+  VersionChanged: '1.10'
+
+# Supports --autocorrect
+Performance/StringIdentifierArgument:
+  Description: Use symbol identifier argument instead of string identifier argument.
+  Enabled: false
+  VersionAdded: '1.13'
+
+# Supports --autocorrect
+Performance/StringInclude:
+  Description: Use `String#include?` instead of a regex match with literal-only pattern.
+  Enabled: false
+  SafeAutoCorrect: false
+  VersionAdded: '1.7'
+  VersionChanged: '1.12'
+
+# Supports --autocorrect
+Performance/StringReplacement:
+  Description: Use `tr` instead of `gsub` when you are replacing the same number of
+    characters. Use `delete` instead of `gsub` when you are deleting characters.
+  Reference: https://github.com/fastruby/fast-ruby#stringgsub-vs-stringtr-code
+  Enabled: false
+  VersionAdded: '0.33'
+
+# Supports --autocorrect
+Performance/Sum:
+  Description: Use `sum` instead of a custom array summation.
+  SafeAutoCorrect: false
+  Reference: https://blog.bigbinary.com/2016/11/02/ruby-2-4-introduces-enumerable-sum.html
+  Enabled: false
+  VersionAdded: '1.8'
+  VersionChanged: '1.13'
+  OnlySumOrWithInitialValue: false
+
+# Supports --autocorrect
+Performance/TimesMap:
+  Description: Checks for .times.map calls.
+  Enabled: false
+  SafeAutoCorrect: false
+  VersionAdded: '0.36'
+  VersionChanged: '1.13'
+
+# Supports --autocorrect
+Performance/UnfreezeString:
+  Description: Use unary plus to get an unfrozen string literal.
+  Enabled: true
+  SafeAutoCorrect: false
+  VersionAdded: '0.50'
+  VersionChanged: '1.9'
+
+# Supports --autocorrect
+Performance/UriDefaultParser:
+  Description: Use `URI::DEFAULT_PARSER` instead of `URI::Parser.new`.
+  Enabled: false
+  VersionAdded: '0.50'

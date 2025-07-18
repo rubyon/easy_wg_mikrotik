@@ -1,0 +1,286 @@
+# Department 'Naming' (18): 수정
+Naming/AccessorMethodName:
+  Description: Check the naming of accessor methods for get_/set_.
+  StyleGuide: "#accessor_mutator_method_names"
+  Enabled: true
+  VersionAdded: '0.50'
+
+Naming/AsciiIdentifiers:
+  Description: Use only ascii symbols in identifiers and constants.
+  StyleGuide: "#english-identifiers"
+  Enabled: true
+  VersionAdded: '0.50'
+  VersionChanged: '0.87'
+  AsciiConstants: true
+
+# Supports --autocorrect
+Naming/BinaryOperatorParameterName:
+  Description: When defining binary operators, name the argument other.
+  StyleGuide: "#other-arg"
+  Enabled: true
+  VersionAdded: '0.50'
+  VersionChanged: '1.2'
+
+# Supports --autocorrect
+Naming/BlockForwarding:
+  Description: Use anonymous block forwarding.
+  StyleGuide: "#block-forwarding"
+  Enabled: true
+  VersionAdded: '1.24'
+  EnforcedStyle: anonymous
+  SupportedStyles:
+    - anonymous
+    - explicit
+  BlockForwardingName: block
+
+Naming/BlockParameterName:
+  Description: Checks for block parameter names that contain capital letters, end in
+    numbers, or do not meet a minimal length.
+  Enabled: true
+  VersionAdded: '0.53'
+  VersionChanged: '0.77'
+  MinNameLength: 1
+  AllowNamesEndingInNumbers: true
+  AllowedNames: []
+  ForbiddenNames: []
+
+Naming/ClassAndModuleCamelCase:
+  Description: Use CamelCase for classes and modules.
+  StyleGuide: "#camelcase-classes"
+  Enabled: true
+  VersionAdded: '0.50'
+  VersionChanged: '0.85'
+  AllowedNames:
+    - module_parent
+
+Naming/ConstantName:
+  Description: Constants should use SCREAMING_SNAKE_CASE.
+  StyleGuide: "#screaming-snake-case"
+  Enabled: true
+  VersionAdded: '0.50'
+
+Naming/FileName:
+  Description: Use snake_case for source file names.
+  StyleGuide: "#snake-case-files"
+  Enabled: true
+  VersionAdded: '0.50'
+  VersionChanged: '1.23'
+  Exclude:
+    - "/Users/rubyon/Desktop/liaf-rails/Rakefile.rb"
+  ExpectMatchingDefinition: false
+  CheckDefinitionPathHierarchy: true
+  CheckDefinitionPathHierarchyRoots:
+    - lib
+    - spec
+    - test
+    - src
+  Regex:
+  IgnoreExecutableScripts: true
+  AllowedAcronyms:
+    - CLI
+    - DSL
+    - ACL
+    - API
+    - ASCII
+    - CPU
+    - CSS
+    - DNS
+    - EOF
+    - GUID
+    - HTML
+    - HTTP
+    - HTTPS
+    - ID
+    - IP
+    - JSON
+    - LHS
+    - QPS
+    - RAM
+    - RHS
+    - RPC
+    - SLA
+    - SMTP
+    - SQL
+    - SSH
+    - TCP
+    - TLS
+    - TTL
+    - UDP
+    - UI
+    - UID
+    - UUID
+    - URI
+    - URL
+    - UTF8
+    - VM
+    - XML
+    - XMPP
+    - XSRF
+    - XSS
+
+# Supports --autocorrect
+Naming/HeredocDelimiterCase:
+  Description: Use configured case for heredoc delimiters.
+  StyleGuide: "#heredoc-delimiters"
+  Enabled: true
+  VersionAdded: '0.50'
+  VersionChanged: '1.2'
+  EnforcedStyle: uppercase
+  SupportedStyles:
+    - lowercase
+    - uppercase
+
+Naming/HeredocDelimiterNaming:
+  Description: Use descriptive heredoc delimiters.
+  StyleGuide: "#heredoc-delimiters"
+  Enabled: true
+  VersionAdded: '0.50'
+  ForbiddenDelimiters:
+    - !ruby/regexp /(^|\s)(EO[A-Z]{1}|END)(\s|$)/i
+
+# Supports --autocorrect
+Naming/InclusiveLanguage:
+  Description: Recommend the use of inclusive language instead of problematic terms.
+  Enabled: false
+  VersionAdded: '1.18'
+  VersionChanged: '1.49'
+  CheckIdentifiers: true
+  CheckConstants: true
+  CheckVariables: true
+  CheckStrings: false
+  CheckSymbols: true
+  CheckComments: true
+  CheckFilepaths: true
+  FlaggedTerms:
+    whitelist:
+      Regex: !ruby/regexp /white[-_\s]?list/
+      Suggestions:
+        - allowlist
+        - permit
+    blacklist:
+      Regex: !ruby/regexp /black[-_\s]?list/
+      Suggestions:
+        - denylist
+        - block
+    slave:
+      WholeWord: true
+      Suggestions:
+        - replica
+        - secondary
+        - follower
+
+# Supports --autocorrect
+Naming/MemoizedInstanceVariableName:
+  Description: Memoized method name should match memo instance variable name.
+  Enabled: true
+  VersionAdded: '0.53'
+  VersionChanged: '1.2'
+  EnforcedStyleForLeadingUnderscores: disallowed
+  SupportedStylesForLeadingUnderscores:
+    - disallowed
+    - required
+    - optional
+  Safe: false
+
+Naming/MethodName:
+  Description: Use the configured style when naming methods.
+  StyleGuide: "#snake-case-symbols-methods-vars"
+  Enabled: true
+  VersionAdded: '0.50'
+  EnforcedStyle: snake_case
+  SupportedStyles:
+    - snake_case
+    - camelCase
+  AllowedPatterns: []
+
+Naming/MethodParameterName:
+  Description: Checks for method parameter names that contain capital letters, end in
+    numbers, or do not meet a minimal length.
+  Enabled: true
+  VersionAdded: '0.53'
+  VersionChanged: '0.77'
+  MinNameLength: 3
+  AllowNamesEndingInNumbers: true
+  AllowedNames:
+    - as
+    - at
+    - by
+    - cc
+    - db
+    - id
+    - if
+    - in
+    - io
+    - ip
+    - of
+    - 'on'
+    - os
+    - pp
+    - to
+  ForbiddenNames: []
+
+Naming/PredicatePrefix:
+  Description: Check the names of predicate methods.
+  StyleGuide: "#bool-methods-qmark"
+  Enabled: false
+  VersionAdded: '0.50'
+  VersionChanged: '0.77'
+  NamePrefix:
+    - is_
+    - has_
+    - have_
+  ForbiddenPrefixes:
+    - is_
+    - has_
+    - have_
+  AllowedMethods:
+    - is_a?
+  MethodDefinitionMacros:
+    - define_method
+    - define_singleton_method
+  Exclude:
+    - "/Users/rubyon/Desktop/liaf-rails/spec/**/*"
+
+# Supports --autocorrect
+Naming/RescuedExceptionsVariableName:
+  Description: Use consistent rescued exceptions variables naming.
+  Enabled: true
+  VersionAdded: '0.67'
+  VersionChanged: '0.68'
+  PreferredName: e
+
+Naming/VariableName:
+  Description: Use the configured style when naming variables.
+  StyleGuide: "#snake-case-symbols-methods-vars"
+  Enabled: true
+  VersionAdded: '0.50'
+  VersionChanged: '1.8'
+  EnforcedStyle: snake_case
+  SupportedStyles:
+    - snake_case
+    - camelCase
+  AllowedIdentifiers: []
+  AllowedPatterns: []
+
+Naming/VariableNumber:
+  Description: Use the configured style when numbering symbols, methods and variables.
+  StyleGuide: "#snake-case-symbols-methods-vars-with-numbers"
+  Enabled: true
+  VersionAdded: '0.50'
+  VersionChanged: '1.4'
+  EnforcedStyle: normalcase
+  SupportedStyles:
+    - snake_case
+    - normalcase
+    - non_integer
+  CheckMethodNames: true
+  CheckSymbols: true
+  AllowedIdentifiers:
+    - capture3
+    - iso8601
+    - rfc1123_date
+    - rfc822
+    - rfc2822
+    - rfc3339
+    - x86_64
+  AllowedPatterns: []

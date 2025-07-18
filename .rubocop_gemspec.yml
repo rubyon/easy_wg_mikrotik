@@ -1,0 +1,102 @@
+# Department 'Gemspec' (9): 미수정
+# Supports --autocorrect
+Gemspec/AddRuntimeDependency:
+  Description: Prefer `add_dependency` over `add_runtime_dependency`.
+  StyleGuide: "#add_dependency_vs_add_runtime_dependency"
+  Reference: https://github.com/rubygems/rubygems/issues/7799#issuecomment-2192720316
+  Enabled: false
+  VersionAdded: '1.65'
+  Include:
+    - "**/*.gemspec"
+
+Gemspec/DependencyVersion:
+  Description: Requires or forbids specifying gem dependency versions.
+  Enabled: false
+  VersionAdded: '1.29'
+  EnforcedStyle: required
+  SupportedStyles:
+    - required
+    - forbidden
+  Include:
+    - "**/*.gemspec"
+  AllowedGems: []
+
+# Supports --autocorrect
+Gemspec/DeprecatedAttributeAssignment:
+  Description: Checks that deprecated attribute assignments are not set in a gemspec
+    file.
+  Enabled: false
+  Severity: warning
+  VersionAdded: '1.30'
+  VersionChanged: '1.40'
+  Include:
+    - "**/*.gemspec"
+
+Gemspec/DevelopmentDependencies:
+  Description: Checks that development dependencies are specified in Gemfile rather
+    than gemspec.
+  Enabled: false
+  VersionAdded: '1.44'
+  EnforcedStyle: Gemfile
+  SupportedStyles:
+    - Gemfile
+    - gems.rb
+    - gemspec
+  AllowedGems: []
+  Include:
+    - "**/*.gemspec"
+    - "**/Gemfile"
+    - "**/gems.rb"
+
+Gemspec/DuplicatedAssignment:
+  Description: An attribute assignment method calls should be listed only once in a
+    gemspec.
+  Enabled: false
+  Severity: warning
+  VersionAdded: '0.52'
+  VersionChanged: '1.40'
+  Include:
+    - "**/*.gemspec"
+
+# Supports --autocorrect
+Gemspec/OrderedDependencies:
+  Description: Dependencies in the gemspec should be alphabetically sorted.
+  Enabled: false
+  VersionAdded: '0.51'
+  TreatCommentsAsGroupSeparators: true
+  ConsiderPunctuation: false
+  Include:
+    - "**/*.gemspec"
+
+# Supports --autocorrect
+Gemspec/RequireMFA:
+  Description: Checks that the gemspec has metadata to require Multi-Factor Authentication
+    from RubyGems.
+  Enabled: false
+  Severity: warning
+  VersionAdded: '1.23'
+  VersionChanged: '1.40'
+  Reference:
+    - https://guides.rubygems.org/mfa-requirement-opt-in/
+  Include:
+    - "**/*.gemspec"
+
+Gemspec/RequiredRubyVersion:
+  Description: Checks that `required_ruby_version` of gemspec is specified and equal
+    to `TargetRubyVersion` of .rubocop.yml.
+  Enabled: false
+  Severity: warning
+  VersionAdded: '0.52'
+  VersionChanged: '1.40'
+  Include:
+    - "**/*.gemspec"
+
+Gemspec/RubyVersionGlobalsUsage:
+  Description: Checks usage of RUBY_VERSION in gemspec.
+  StyleGuide: "#no-ruby-version-in-the-gemspec"
+  Enabled: false
+  Severity: warning
+  VersionAdded: '0.72'
+  VersionChanged: '1.40'
+  Include:
+    - "**/*.gemspec"

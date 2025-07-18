@@ -1,0 +1,9 @@
+# .erb_lint.yml
+linters:
+  RuboCop:
+    enabled: true
+    rubocop_config: .rubocop.yml
+  SpaceInHtmlTag:
+    enabled: false
+  RequireInputAutocomplete:
+    enabled: false

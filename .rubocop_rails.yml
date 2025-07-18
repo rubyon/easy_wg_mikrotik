@@ -1,0 +1,1215 @@
+# Department 'Rails' (131): 미수정
+# Supports --autocorrect
+Rails/ActionControllerFlashBeforeRender:
+  Description: Use `flash.now` instead of `flash` before `render`.
+  Enabled: false
+  SafeAutoCorrect: false
+  VersionAdded: '2.16'
+
+# Supports --autocorrect
+Rails/ActionControllerTestCase:
+  Description: Use `ActionDispatch::IntegrationTest` instead of `ActionController::TestCase`.
+  StyleGuide: https://rails.rubystyle.guide/#integration-testing
+  Reference: https://api.rubyonrails.org/classes/ActionController/TestCase.html
+  Enabled: false
+  SafeAutoCorrect: false
+  VersionAdded: '2.14'
+  Include:
+    - "**/test/**/*.rb"
+
+# Supports --autocorrect
+Rails/ActionFilter:
+  Description: Enforces consistent use of action filter methods.
+  Enabled: false
+  VersionAdded: '0.19'
+  VersionChanged: '2.22'
+  EnforcedStyle: action
+  SupportedStyles:
+    - action
+    - filter
+  Include:
+    - app/controllers/**/*.rb
+    - app/mailers/**/*.rb
+
+# Supports --autocorrect
+Rails/ActionOrder:
+  Description: Enforce consistent ordering of controller actions.
+  Enabled: false
+  VersionAdded: '2.17'
+  ExpectedOrder:
+    - index
+    - show
+    - new
+    - edit
+    - create
+    - update
+    - destroy
+  Include:
+    - app/controllers/**/*.rb
+
+# Supports --autocorrect
+Rails/ActiveRecordAliases:
+  Description: 'Avoid Active Record aliases: Use `update` instead of `update_attributes`.
+    Use `update!` instead of `update_attributes!`.'
+  Enabled: false
+  VersionAdded: '0.53'
+  SafeAutoCorrect: false
+
+# Supports --autocorrect
+Rails/ActiveRecordCallbacksOrder:
+  Description: Order callback declarations in the order in which they will be executed.
+  StyleGuide: https://rails.rubystyle.guide/#callbacks-order
+  Enabled: false
+  VersionAdded: '2.7'
+  Include:
+    - app/models/**/*.rb
+
+Rails/ActiveRecordOverride:
+  Description: Check for overriding Active Record methods instead of using callbacks.
+  Enabled: false
+  Severity: warning
+  VersionAdded: '0.67'
+  VersionChanged: '2.18'
+  Include:
+    - app/models/**/*.rb
+
+# Supports --autocorrect
+Rails/ActiveSupportAliases:
+  Description: 'Avoid ActiveSupport aliases of standard ruby methods: `String#starts_with?`,
+    `String#ends_with?`, `Array#append`, `Array#prepend`.'
+  Enabled: false
+  VersionAdded: '0.48'
+
+# Supports --autocorrect
+Rails/ActiveSupportOnLoad:
+  Description: Use `ActiveSupport.on_load(...)` to patch Rails framework classes.
+  Enabled: false
+  Reference:
+    - https://api.rubyonrails.org/classes/ActiveSupport/LazyLoadHooks.html
+    - https://guides.rubyonrails.org/engines.html#available-load-hooks
+  SafeAutoCorrect: false
+  VersionAdded: '2.16'
+  VersionChanged: '2.24'
+
+# Supports --autocorrect
+Rails/AddColumnIndex:
+  Description: Rails migrations don't make use of a given `index` key, but also doesn't
+    given an error when it's used, so it makes it seem like an index might be used.
+  Enabled: false
+  VersionAdded: '2.11'
+  VersionChanged: '2.20'
+  Include:
+    - db/**/*.rb
+
+Rails/AfterCommitOverride:
+  Description: Enforces that there is only one call to `after_commit` (and its aliases
+    - `after_create_commit`, `after_update_commit`, and `after_destroy_commit`) with
+    the same callback name per model.
+  Enabled: false
+  VersionAdded: '2.8'
+
+# Supports --autocorrect
+Rails/ApplicationController:
+  Description: Check that controllers subclass ApplicationController.
+  Enabled: false
+  SafeAutoCorrect: false
+  VersionAdded: '2.4'
+  VersionChanged: '2.5'
+
+# Supports --autocorrect
+Rails/ApplicationJob:
+  Description: Check that jobs subclass ApplicationJob.
+  Enabled: false
+  SafeAutoCorrect: false
+  VersionAdded: '0.49'
+  VersionChanged: '2.5'
+
+# Supports --autocorrect
+Rails/ApplicationMailer:
+  Description: Check that mailers subclass ApplicationMailer.
+  Enabled: false
+  SafeAutoCorrect: false
+  VersionAdded: '2.4'
+  VersionChanged: '2.5'
+
+# Supports --autocorrect
+Rails/ApplicationRecord:
+  Description: Check that models subclass ApplicationRecord.
+  Enabled: false
+  SafeAutoCorrect: false
+  VersionAdded: '0.49'
+  VersionChanged: '2.26'
+  Exclude:
+    - "/Users/rubyon/Desktop/liaf-rails/db/**/*.rb"
+
+# Supports --autocorrect
+Rails/ArelStar:
+  Description: Enforces `Arel.star` instead of `"*"` for expanded columns.
+  Enabled: false
+  SafeAutoCorrect: false
+  VersionAdded: '2.9'
+
+# Supports --autocorrect
+Rails/AssertNot:
+  Description: Use `assert_not` instead of `assert !`.
+  Enabled: true
+  VersionAdded: '0.56'
+  Include:
+    - test/**/*
+
+# Supports --autocorrect
+Rails/AttributeDefaultBlockValue:
+  Description: Pass method call in block for attribute option `default`.
+  Enabled: false
+  VersionAdded: '2.9'
+  Include:
+    - app/models/**/*
+
+# Supports --autocorrect
+Rails/BelongsTo:
+  Description: 'Use `optional: true` instead of `required: false` for `belongs_to` relations.'
+  Reference:
+    - https://guides.rubyonrails.org/5_0_release_notes.html
+    - https://github.com/rails/rails/pull/18937
+  Enabled: false
+  VersionAdded: '0.62'
+
+# Supports --autocorrect
+Rails/Blank:
+  Description: Enforces use of `blank?`.
+  Enabled: false
+  SafeAutoCorrect: false
+  VersionAdded: '0.48'
+  VersionChanged: '2.10'
+  NilOrEmpty: true
+  NotPresent: true
+  UnlessPresent: true
+
+Rails/BulkChangeTable:
+  Description: Check whether alter queries are combinable.
+  Reference:
+    - https://api.rubyonrails.org/classes/ActiveRecord/ConnectionAdapters/SchemaStatements.html#method-i-change_table
+    - https://api.rubyonrails.org/classes/ActiveRecord/ConnectionAdapters/Table.html
+  Enabled: false
+  VersionAdded: '0.57'
+  VersionChanged: '2.20'
+  Database:
+  SupportedDatabases:
+    - mysql
+    - postgresql
+  Include:
+    - db/**/*.rb
+
+# Supports --autocorrect
+Rails/CompactBlank:
+  Description: Checks if collection can be blank-compacted with `compact_blank`.
+  Enabled: false
+  Safe: false
+  VersionAdded: '2.13'
+
+# Supports --autocorrect
+Rails/ContentTag:
+  Description: Use `tag.something` instead of `tag(:something)`.
+  Reference:
+    - https://github.com/rubocop/rubocop-rails/issues/260
+    - https://github.com/rails/rails/issues/25195
+    - https://api.rubyonrails.org/classes/ActionView/Helpers/TagHelper.html#method-i-content_tag
+  Enabled: false
+  VersionAdded: '2.6'
+  VersionChanged: '2.12'
+  Exclude:
+    - "/Users/rubyon/Desktop/liaf-rails/app/models/**/*.rb"
+    - "/Users/rubyon/Desktop/liaf-rails/config/**/*.rb"
+
+Rails/CreateTableWithTimestamps:
+  Description: Checks the migration for which timestamps are not included when creating
+    a new table.
+  Enabled: false
+  VersionAdded: '0.52'
+  VersionChanged: '2.20'
+  Include:
+    - db/**/*.rb
+  Exclude:
+    - "/Users/rubyon/Desktop/liaf-rails/db/**/*_create_active_storage_tables.active_storage.rb"
+    - "/Users/rubyon/Desktop/liaf-rails/db/**/*_create_active_storage_variant_records.active_storage.rb"
+
+Rails/DangerousColumnNames:
+  Description: Avoid dangerous column names.
+  Enabled: false
+  Severity: warning
+  VersionAdded: '2.21'
+  Include:
+    - db/**/*.rb
+
+# Supports --autocorrect
+Rails/Date:
+  Description: Checks the correct usage of date aware methods, such as Date.today, Date.current
+    etc.
+  Enabled: false
+  SafeAutoCorrect: false
+  VersionAdded: '0.30'
+  VersionChanged: '2.11'
+  EnforcedStyle: flexible
+  SupportedStyles:
+    - strict
+    - flexible
+  AllowToTime: true
+
+Rails/DefaultScope:
+  Description: Avoid use of `default_scope`.
+  Enabled: false
+  VersionAdded: '2.7'
+
+# Supports --autocorrect
+Rails/Delegate:
+  Description: Prefer delegate method for delegations.
+  Enabled: false
+  VersionAdded: '0.21'
+  VersionChanged: '0.50'
+  EnforceForPrefixed: true
+
+# Supports --autocorrect
+Rails/DelegateAllowBlank:
+  Description: Do not use allow_blank as an option to delegate.
+  Enabled: false
+  VersionAdded: '0.44'
+
+# Supports --autocorrect
+Rails/DeprecatedActiveModelErrorsMethods:
+  Description: Avoid manipulating ActiveModel errors hash directly.
+  Enabled: false
+  Severity: warning
+  Safe: false
+  VersionAdded: '2.14'
+  VersionChanged: '2.18'
+
+# Supports --autocorrect
+Rails/DotSeparatedKeys:
+  Description: Enforces the use of dot-separated keys instead of `:scope` options in
+    `I18n` translation methods.
+  StyleGuide: https://rails.rubystyle.guide/#dot-separated-keys
+  Enabled: false
+  VersionAdded: '2.15'
+
+# Supports --autocorrect
+Rails/DuplicateAssociation:
+  Description: Don't repeat associations in a model.
+  Enabled: false
+  Severity: warning
+  VersionAdded: '2.14'
+  VersionChanged: '2.18'
+
+Rails/DuplicateScope:
+  Description: Multiple scopes share this same where clause.
+  Enabled: false
+  Severity: warning
+  VersionAdded: '2.14'
+  VersionChanged: '2.18'
+
+# Supports --autocorrect
+Rails/DurationArithmetic:
+  Description: Do not use duration as arithmetic operand with `Time.current`.
+  StyleGuide: https://rails.rubystyle.guide#duration-arithmetic
+  Enabled: false
+  VersionAdded: '2.13'
+
+# Supports --autocorrect
+Rails/DynamicFindBy:
+  Description: Use `find_by` instead of dynamic `find_by_*`.
+  StyleGuide: https://rails.rubystyle.guide#find_by
+  Enabled: false
+  Safe: false
+  VersionAdded: '0.44'
+  VersionChanged: '2.10'
+  Whitelist:
+    - find_by_sql
+    - find_by_token_for
+  AllowedMethods:
+    - find_by_sql
+    - find_by_token_for
+  AllowedReceivers:
+    - Gem::Specification
+    - page
+
+# Supports --autocorrect
+Rails/EagerEvaluationLogMessage:
+  Description: Checks that blocks are used for interpolated strings passed to `Rails.logger.debug`.
+  Reference: https://guides.rubyonrails.org/debugging_rails_applications.html#impact-of-logs-on-performance
+  Enabled: false
+  VersionAdded: '2.11'
+
+# Supports --autocorrect
+Rails/EnumHash:
+  Description: Prefer hash syntax over array syntax when defining enums.
+  StyleGuide: https://rails.rubystyle.guide#enums
+  Enabled: false
+  VersionAdded: '2.3'
+  Include:
+    - app/models/**/*.rb
+
+# Supports --autocorrect
+Rails/EnumSyntax:
+  Description: Use positional arguments over keyword arguments when defining enums.
+  Enabled: false
+  Severity: warning
+  VersionAdded: '2.26'
+  Include:
+    - app/models/**/*.rb
+
+Rails/EnumUniqueness:
+  Description: Avoid duplicate integers in hash-syntax `enum` declaration.
+  Enabled: false
+  VersionAdded: '0.46'
+  Include:
+    - app/models/**/*.rb
+
+# Supports --autocorrect
+Rails/EnvLocal:
+  Description: Use `Rails.env.local?` instead of `Rails.env.development? || Rails.env.test?`.
+  Enabled: false
+  VersionAdded: '2.22'
+
+# Supports --autocorrect
+Rails/EnvironmentComparison:
+  Description: Favor `Rails.env.production?` over `Rails.env == 'production'`.
+  Enabled: false
+  VersionAdded: '0.52'
+
+Rails/EnvironmentVariableAccess:
+  Description: Do not access `ENV` directly after initialization.
+  Enabled: false
+  VersionAdded: '2.10'
+  VersionChanged: '2.24'
+  Include:
+    - app/**/*.rb
+    - config/initializers/**/*.rb
+    - lib/**/*.rb
+  Exclude:
+    - "/Users/rubyon/Desktop/liaf-rails/lib/**/*.rake"
+  AllowReads: false
+  AllowWrites: false
+
+Rails/Exit:
+  Description: Favor `fail`, `break`, `return`, etc. over `exit` in application or library
+    code outside of Rake files to avoid exits during unit testing or running in production.
+  Enabled: false
+  VersionAdded: '0.41'
+  Include:
+    - app/**/*.rb
+    - config/**/*.rb
+    - lib/**/*.rb
+  Exclude:
+    - "/Users/rubyon/Desktop/liaf-rails/lib/**/*.rake"
+
+# Supports --autocorrect
+Rails/ExpandedDateRange:
+  Description: Checks for expanded date range.
+  StyleGuide: https://rails.rubystyle.guide/#date-time-range
+  Enabled: false
+  VersionAdded: '2.11'
+
+# Supports --autocorrect
+Rails/FilePath:
+  Description: Use `Rails.root.join` for file path joining.
+  Enabled: false
+  VersionAdded: '0.47'
+  VersionChanged: '2.4'
+  EnforcedStyle: slashes
+  SupportedStyles:
+    - slashes
+    - arguments
+
+# Supports --autocorrect
+Rails/FindBy:
+  Description: Prefer find_by over where.first.
+  StyleGuide: https://rails.rubystyle.guide#find_by
+  Enabled: false
+  VersionAdded: '0.30'
+  VersionChanged: '2.21'
+  IgnoreWhereFirst: true
+
+# Supports --autocorrect
+Rails/FindById:
+  Description: Favor the use of `find` over `where.take!`, `find_by!`, and `find_by_id!`
+    when you need to retrieve a single record by primary key when you expect it to be
+    found.
+  StyleGuide: https://rails.rubystyle.guide/#find
+  Enabled: false
+  VersionAdded: '2.7'
+
+# Supports --autocorrect
+Rails/FindEach:
+  Description: Prefer all.find_each over all.each.
+  StyleGuide: https://rails.rubystyle.guide#find-each
+  Enabled: false
+  Safe: false
+  VersionAdded: '0.30'
+  VersionChanged: '2.21'
+  AllowedMethods:
+    - order
+    - limit
+    - select
+    - lock
+  AllowedPatterns: []
+
+# Supports --autocorrect
+Rails/FreezeTime:
+  Description: Prefer `freeze_time` over `travel_to` with an argument of the current
+    time.
+  StyleGuide: https://rails.rubystyle.guide/#freeze-time
+  Enabled: false
+  VersionAdded: '2.16'
+  SafeAutoCorrect: false
+
+Rails/HasAndBelongsToMany:
+  Description: Prefer has_many :through to has_and_belongs_to_many.
+  StyleGuide: https://rails.rubystyle.guide#has-many-through
+  Enabled: false
+  VersionAdded: '0.12'
+  Include:
+    - app/models/**/*.rb
+
+Rails/HasManyOrHasOneDependent:
+  Description: Define the dependent option to the has_many and has_one associations.
+  StyleGuide: https://rails.rubystyle.guide#has_many-has_one-dependent-option
+  Enabled: false
+  VersionAdded: '0.50'
+  Include:
+    - app/models/**/*.rb
+
+Rails/HelperInstanceVariable:
+  Description: Do not use instance variables in helpers.
+  Enabled: false
+  VersionAdded: '2.0'
+  Include:
+    - app/helpers/**/*.rb
+
+# Supports --autocorrect
+Rails/HttpPositionalArguments:
+  Description: Use keyword arguments instead of positional arguments in http method
+    calls.
+  Enabled: false
+  VersionAdded: '0.44'
+  Include:
+    - spec/**/*
+    - test/**/*
+
+# Supports --autocorrect
+Rails/HttpStatus:
+  Description: Enforces use of symbolic or numeric value to define HTTP status.
+  Enabled: false
+  VersionAdded: '0.54'
+  VersionChanged: '2.11'
+  EnforcedStyle: symbolic
+  SupportedStyles:
+    - numeric
+    - symbolic
+
+# Supports --autocorrect
+Rails/I18nLazyLookup:
+  Description: Checks for places where I18n "lazy" lookup can be used.
+  StyleGuide: https://rails.rubystyle.guide/#lazy-lookup
+  Reference: https://guides.rubyonrails.org/i18n.html#lazy-lookup
+  Enabled: false
+  VersionAdded: '2.14'
+  EnforcedStyle: lazy
+  SupportedStyles:
+    - lazy
+    - explicit
+  Include:
+    - app/controllers/**/*.rb
+
+Rails/I18nLocaleAssignment:
+  Description: Prefer the usage of `I18n.with_locale` instead of manually updating `I18n.locale`
+    value.
+  Enabled: false
+  VersionAdded: '2.11'
+  Include:
+    - spec/**/*.rb
+    - test/**/*.rb
+
+Rails/I18nLocaleTexts:
+  Description: Enforces use of I18n and locale files instead of locale specific strings.
+  StyleGuide: https://rails.rubystyle.guide/#locale-texts
+  Enabled: false
+  VersionAdded: '2.14'
+
+# Supports --autocorrect
+Rails/IgnoredColumnsAssignment:
+  Description: Looks for assignments of `ignored_columns` that override previous assignments.
+  StyleGuide: https://rails.rubystyle.guide/#append-ignored-columns
+  Enabled: false
+  SafeAutoCorrect: false
+  VersionAdded: '2.17'
+
+# Supports --autocorrect
+Rails/IgnoredSkipActionFilterOption:
+  Description: Checks that `if` and `only` (or `except`) are not used together as options
+    of `skip_*` action filter.
+  Reference: https://api.rubyonrails.org/classes/AbstractController/Callbacks/ClassMethods.html#method-i-_normalize_callback_options
+  Enabled: false
+  VersionAdded: '0.63'
+  Include:
+    - app/controllers/**/*.rb
+    - app/mailers/**/*.rb
+
+# Supports --autocorrect
+Rails/IndexBy:
+  Description: Prefer `index_by` over `each_with_object`, `to_h`, or `map`.
+  Enabled: false
+  VersionAdded: '2.5'
+  VersionChanged: '2.8'
+
+# Supports --autocorrect
+Rails/IndexWith:
+  Description: Prefer `index_with` over `each_with_object`, `to_h`, or `map`.
+  Enabled: false
+  VersionAdded: '2.5'
+  VersionChanged: '2.8'
+
+Rails/Inquiry:
+  Description: Prefer Ruby's comparison operators over Active Support's `Array#inquiry`
+    and `String#inquiry`.
+  StyleGuide: https://rails.rubystyle.guide/#inquiry
+  Enabled: false
+  VersionAdded: '2.7'
+
+Rails/InverseOf:
+  Description: Checks for associations where the inverse cannot be determined automatically.
+  Reference:
+    - https://guides.rubyonrails.org/association_basics.html#bi-directional-associations
+    - https://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html#module-ActiveRecord::Associations::ClassMethods-label-Setting+Inverses
+  Enabled: false
+  VersionAdded: '0.52'
+  IgnoreScopes: false
+  Include:
+    - app/models/**/*.rb
+
+Rails/LexicallyScopedActionFilter:
+  Description: Checks that methods specified in the filter's `only` or `except` options
+    are explicitly defined in the class.
+  StyleGuide: https://rails.rubystyle.guide#lexically-scoped-action-filter
+  Enabled: false
+  Safe: false
+  VersionAdded: '0.52'
+  Include:
+    - app/controllers/**/*.rb
+    - app/mailers/**/*.rb
+
+# Supports --autocorrect
+Rails/LinkToBlank:
+  Description: 'Checks that `link_to` with a `target: "_blank"` have a `rel: "noopener"`
+    option passed to them.'
+  Reference:
+    - https://mathiasbynens.github.io/rel-noopener/
+    - https://html.spec.whatwg.org/multipage/links.html#link-type-noopener
+    - https://html.spec.whatwg.org/multipage/links.html#link-type-noreferrer
+  Enabled: false
+  VersionAdded: '0.62'
+
+# Supports --autocorrect
+Rails/MailerName:
+  Description: Mailer should end with `Mailer` suffix.
+  StyleGuide: https://rails.rubystyle.guide/#mailer-name
+  Enabled: false
+  SafeAutoCorrect: false
+  VersionAdded: '2.7'
+  Include:
+    - app/mailers/**/*.rb
+
+# Supports --autocorrect
+Rails/MatchRoute:
+  Description: Don't use `match` to define any routes unless there is a need to map
+    multiple request types among [:get, :post, :patch, :put, :delete] to a single action
+    using the `:via` option.
+  StyleGuide: https://rails.rubystyle.guide/#no-match-routes
+  Enabled: false
+  VersionAdded: '2.7'
+  Include:
+    - config/routes.rb
+    - config/routes/**/*.rb
+
+# Supports --autocorrect
+Rails/MigrationClassName:
+  Description: The class name of the migration should match its file name.
+  Enabled: false
+  VersionAdded: '2.14'
+  VersionChanged: '2.20'
+  Include:
+    - db/**/*.rb
+
+# Supports --autocorrect
+Rails/NegateInclude:
+  Description: Prefer `collection.exclude?(obj)` over `!collection.include?(obj)`.
+  StyleGuide: https://rails.rubystyle.guide#exclude
+  Enabled: false
+  Safe: false
+  VersionAdded: '2.7'
+  VersionChanged: '2.9'
+
+Rails/NotNullColumn:
+  Description: Do not add a NOT NULL column without a default value to existing tables.
+  Enabled: false
+  VersionAdded: '0.43'
+  VersionChanged: '2.20'
+  Database:
+  SupportedDatabases:
+    - mysql
+  Include:
+    - db/**/*.rb
+
+Rails/OrderById:
+  Description: Do not use the `id` column for ordering. Use a timestamp column to order
+    chronologically.
+  StyleGuide: https://rails.rubystyle.guide/#order-by-id
+  Enabled: false
+  VersionAdded: '2.8'
+
+# Supports --autocorrect
+Rails/Output:
+  Description: Checks for calls to puts, print, etc.
+  Enabled: false
+  SafeAutoCorrect: false
+  VersionAdded: '0.15'
+  VersionChanged: '0.19'
+  Include:
+    - app/**/*.rb
+    - config/**/*.rb
+    - db/**/*.rb
+    - lib/**/*.rb
+
+Rails/OutputSafety:
+  Description: The use of `html_safe` or `raw` may be a security risk.
+  Enabled: false
+  VersionAdded: '0.41'
+
+# Supports --autocorrect
+Rails/Pick:
+  Description: Prefer `pick` over `pluck(...).first`.
+  StyleGuide: https://rails.rubystyle.guide#pick
+  Enabled: false
+  Safe: false
+  VersionAdded: '2.6'
+
+# Supports --autocorrect
+Rails/Pluck:
+  Description: Prefer `pluck` over `map { ... }`.
+  StyleGuide: https://rails.rubystyle.guide#pluck
+  Enabled: false
+  Safe: false
+  VersionAdded: '2.7'
+  VersionChanged: '2.18'
+
+# Supports --autocorrect
+Rails/PluckId:
+  Description: Use `ids` instead of `pluck(:id)` or `pluck(primary_key)`.
+  StyleGuide: https://rails.rubystyle.guide/#ids
+  Enabled: false
+  Safe: false
+  VersionAdded: '2.7'
+
+# Supports --autocorrect
+Rails/PluckInWhere:
+  Description: Use `select` instead of `pluck` in `where` query methods.
+  Enabled: false
+  Safe: false
+  VersionAdded: '2.7'
+  VersionChanged: '2.8'
+  EnforcedStyle: conservative
+  SupportedStyles:
+    - conservative
+    - aggressive
+
+# Supports --autocorrect
+Rails/PluralizationGrammar:
+  Description: Checks for incorrect grammar when using methods like `3.day.ago`.
+  Enabled: false
+  VersionAdded: '0.35'
+
+# Supports --autocorrect
+Rails/Presence:
+  Description: Checks code that can be written more easily using `Object#presence` defined
+    by Active Support.
+  Enabled: false
+  VersionAdded: '0.52'
+
+# Supports --autocorrect
+Rails/Present:
+  Description: Enforces use of `present?`.
+  Enabled: false
+  VersionAdded: '0.48'
+  VersionChanged: '0.67'
+  NotNilAndNotEmpty: true
+  NotBlank: true
+  UnlessBlank: true
+
+# Supports --autocorrect
+Rails/RakeEnvironment:
+  Description: Include `:environment` as a dependency for all Rake tasks.
+  Enabled: false
+  Safe: false
+  VersionAdded: '2.4'
+  VersionChanged: '2.6'
+  Include:
+    - "**/Rakefile"
+    - "**/*.rake"
+  Exclude:
+    - "/Users/rubyon/Desktop/liaf-rails/lib/capistrano/tasks/**/*.rake"
+
+# Supports --autocorrect
+Rails/ReadWriteAttribute:
+  Description: Checks for read_attribute(:attr) and write_attribute(:attr, val).
+  StyleGuide: https://rails.rubystyle.guide#read-attribute
+  Enabled: false
+  VersionAdded: '0.20'
+  VersionChanged: '0.29'
+  Include:
+    - app/models/**/*.rb
+
+# Supports --autocorrect
+Rails/RedundantActiveRecordAllMethod:
+  Description: Detect redundant `all` used as a receiver for Active Record query methods.
+  StyleGuide: https://rails.rubystyle.guide/#redundant-all
+  Enabled: false
+  Safe: false
+  AllowedReceivers:
+    - ActionMailer::Preview
+    - ActiveSupport::TimeZone
+  VersionAdded: '2.21'
+
+# Supports --autocorrect
+Rails/RedundantAllowNil:
+  Description: Finds redundant use of `allow_nil` when `allow_blank` is set to certain
+    values in model validations.
+  Enabled: false
+  VersionAdded: '0.67'
+  Include:
+    - app/models/**/*.rb
+
+# Supports --autocorrect
+Rails/RedundantForeignKey:
+  Description: Checks for associations where the `:foreign_key` option is redundant.
+  Enabled: false
+  VersionAdded: '2.6'
+
+# Supports --autocorrect
+Rails/RedundantPresenceValidationOnBelongsTo:
+  Description: Checks for redundant presence validation on belongs_to association.
+  Enabled: false
+  SafeAutoCorrect: false
+  VersionAdded: '2.13'
+
+# Supports --autocorrect
+Rails/RedundantReceiverInWithOptions:
+  Description: Checks for redundant receiver in `with_options`.
+  Enabled: false
+  VersionAdded: '0.52'
+
+# Supports --autocorrect
+Rails/RedundantTravelBack:
+  Description: Checks for redundant `travel_back` calls.
+  Enabled: false
+  VersionAdded: '2.12'
+  Include:
+    - spec/**/*.rb
+    - test/**/*.rb
+
+# Supports --autocorrect
+Rails/ReflectionClassName:
+  Description: Use a string for `class_name` option value in the definition of a reflection.
+  Enabled: false
+  Safe: false
+  VersionAdded: '0.64'
+  VersionChanged: '2.10'
+
+# Supports --autocorrect
+Rails/RefuteMethods:
+  Description: Use `assert_not` methods instead of `refute` methods.
+  Enabled: true
+  VersionAdded: '0.56'
+  EnforcedStyle: assert_not
+  SupportedStyles:
+    - assert_not
+    - refute
+  Include:
+    - test/**/*
+
+# Supports --autocorrect
+Rails/RelativeDateConstant:
+  Description: Do not assign relative date to constants.
+  Enabled: false
+  SafeAutoCorrect: false
+  VersionAdded: '0.48'
+  VersionChanged: '2.13'
+
+Rails/RenderInline:
+  Description: Prefer using a template over inline rendering.
+  StyleGuide: https://rails.rubystyle.guide/#inline-rendering
+  Enabled: false
+  VersionAdded: '2.7'
+
+# Supports --autocorrect
+Rails/RenderPlainText:
+  Description: Prefer `render plain:` over `render text:`.
+  StyleGuide: https://rails.rubystyle.guide/#plain-text-rendering
+  Enabled: false
+  VersionAdded: '2.7'
+  ContentTypeCompatibility: true
+
+# Supports --autocorrect
+Rails/RequestReferer:
+  Description: Use consistent syntax for request.referer.
+  Enabled: false
+  VersionAdded: '0.41'
+  EnforcedStyle: referer
+  SupportedStyles:
+    - referer
+    - referrer
+
+Rails/RequireDependency:
+  Description: Do not use `require_dependency` when running in Zeitwerk mode. `require_dependency`
+    is for autoloading in classic mode.
+  Reference: https://guides.rubyonrails.org/autoloading_and_reloading_constants.html
+  Enabled: false
+  VersionAdded: '2.10'
+
+# Supports --autocorrect
+Rails/ResponseParsedBody:
+  Description: Prefer `response.parsed_body` to custom parsing logic for `response.body`.
+  Enabled: false
+  Safe: false
+  VersionAdded: '2.18'
+  VersionChanged: '2.19'
+  Include:
+    - spec/controllers/**/*.rb
+    - spec/requests/**/*.rb
+    - test/controllers/**/*.rb
+    - test/integration/**/*.rb
+
+Rails/ReversibleMigration:
+  Description: Checks whether the change method of the migration file is reversible.
+  StyleGuide: https://rails.rubystyle.guide#reversible-migration
+  Reference: https://api.rubyonrails.org/classes/ActiveRecord/Migration/CommandRecorder.html
+  Enabled: false
+  VersionAdded: '0.47'
+  VersionChanged: '2.13'
+  Include:
+    - db/**/*.rb
+
+Rails/ReversibleMigrationMethodDefinition:
+  Description: Checks whether the migration implements either a `change` method or both
+    an `up` and a `down` method.
+  Enabled: false
+  VersionAdded: '2.10'
+  VersionChanged: '2.13'
+  Include:
+    - db/**/*.rb
+
+# Supports --autocorrect
+Rails/RootJoinChain:
+  Description: Use a single `#join` instead of chaining on `Rails.root` or `Rails.public_path`.
+  Enabled: false
+  VersionAdded: '2.13'
+
+# Supports --autocorrect
+Rails/RootPathnameMethods:
+  Description: Use `Rails.root` IO methods instead of passing it to `File`.
+  Enabled: false
+  SafeAutoCorrect: false
+  VersionAdded: '2.16'
+
+# Supports --autocorrect
+Rails/RootPublicPath:
+  Description: Favor `Rails.public_path` over `Rails.root` with `'public'`.
+  Enabled: false
+  VersionAdded: '2.15'
+
+# Supports --autocorrect
+Rails/SafeNavigation:
+  Description: Use Ruby's safe navigation operator (`&.`) instead of `try!`.
+  Enabled: false
+  VersionAdded: '0.43'
+  ConvertTry: false
+
+# Supports --autocorrect
+Rails/SafeNavigationWithBlank:
+  Description: Avoid `foo&.blank?` in conditionals.
+  Enabled: false
+  VersionAdded: '2.4'
+  SafeAutoCorrect: false
+
+# Supports --autocorrect
+Rails/SaveBang:
+  Description: Identifies possible cases where Active Record save! or related should
+    be used.
+  StyleGuide: https://rails.rubystyle.guide#save-bang
+  Enabled: false
+  VersionAdded: '0.42'
+  VersionChanged: '0.59'
+  AllowImplicitReturn: true
+  AllowedReceivers: []
+  SafeAutoCorrect: false
+
+Rails/SchemaComment:
+  Description: Enforces the use of the `comment` option when adding a new table or column
+    to the database during a migration.
+  Enabled: false
+  VersionAdded: '2.13'
+
+# Supports --autocorrect
+Rails/ScopeArgs:
+  Description: Checks the arguments of ActiveRecord scopes.
+  Enabled: false
+  VersionAdded: '0.19'
+  VersionChanged: '2.12'
+  Include:
+    - app/models/**/*.rb
+
+# Supports --autocorrect
+Rails/SelectMap:
+  Description: Checks for uses of `select(:column_name)` with `map(&:column_name)`.
+  Enabled: false
+  Safe: false
+  VersionAdded: '2.21'
+
+# Supports --autocorrect
+Rails/ShortI18n:
+  Description: 'Use the short form of the I18n methods: `t` instead of `translate` and
+    `l` instead of `localize`.'
+  StyleGuide: https://rails.rubystyle.guide/#short-i18n
+  Enabled: false
+  VersionAdded: '2.7'
+  EnforcedStyle: conservative
+  SupportedStyles:
+    - conservative
+    - aggressive
+
+Rails/SkipsModelValidations:
+  Description: Use methods that skips model validations with caution. See reference
+    for more information.
+  Reference: https://guides.rubyonrails.org/active_record_validations.html#skipping-validations
+  Enabled: false
+  Safe: false
+  VersionAdded: '0.47'
+  VersionChanged: '2.25'
+  ForbiddenMethods:
+    - decrement!
+    - decrement_counter
+    - increment!
+    - increment_counter
+    - insert
+    - insert!
+    - insert_all
+    - insert_all!
+    - toggle!
+    - touch
+    - touch_all
+    - update_all
+    - update_attribute
+    - update_column
+    - update_columns
+    - update_counters
+    - upsert
+    - upsert_all
+  AllowedMethods: []
+
+# Supports --autocorrect
+Rails/SquishedSQLHeredocs:
+  Description: Checks SQL heredocs to use `.squish`.
+  StyleGuide: https://rails.rubystyle.guide/#squished-heredocs
+  Enabled: false
+  VersionAdded: '2.8'
+  VersionChanged: '2.9'
+  SafeAutoCorrect: false
+
+# Supports --autocorrect
+Rails/StripHeredoc:
+  Description: Enforces the use of squiggly heredoc over `strip_heredoc`.
+  StyleGuide: https://rails.rubystyle.guide/#prefer-squiggly-heredoc
+  Enabled: false
+  VersionAdded: '2.15'
+
+Rails/TableNameAssignment:
+  Description: Do not use `self.table_name =`. Use Inflections or `table_name_prefix`
+    instead.
+  StyleGuide: https://rails.rubystyle.guide/#keep-ar-defaults
+  Enabled: false
+  VersionAdded: '2.14'
+  Include:
+    - app/models/**/*.rb
+
+Rails/ThreeStateBooleanColumn:
+  Description: Add a default value and a `NOT NULL` constraint to boolean columns.
+  StyleGuide: https://rails.rubystyle.guide/#three-state-boolean
+  Enabled: false
+  VersionAdded: '2.19'
+  Include:
+    - db/**/*.rb
+
+# Supports --autocorrect
+Rails/TimeZone:
+  Description: Checks the correct usage of time zone aware methods.
+  StyleGuide: https://rails.rubystyle.guide#time
+  Reference: http://danilenko.org/2012/7/6/rails_timezones
+  Enabled: false
+  SafeAutoCorrect: false
+  VersionAdded: '0.30'
+  VersionChanged: '2.13'
+  EnforcedStyle: flexible
+  SupportedStyles:
+    - strict
+    - flexible
+  Exclude:
+    - "/Users/rubyon/Desktop/liaf-rails/**/*.gemspec"
+
+Rails/TimeZoneAssignment:
+  Description: Prefer the usage of `Time.use_zone` instead of manually updating `Time.zone`
+    value.
+  Reference: https://thoughtbot.com/blog/its-about-time-zones
+  Enabled: false
+  VersionAdded: '2.10'
+  Include:
+    - spec/**/*.rb
+    - test/**/*.rb
+
+# Supports --autocorrect
+Rails/ToFormattedS:
+  Description: Checks for consistent uses of `to_fs` or `to_formatted_s`.
+  StyleGuide: https://rails.rubystyle.guide/#prefer-to-fs
+  Enabled: false
+  EnforcedStyle: to_fs
+  SupportedStyles:
+    - to_fs
+    - to_formatted_s
+  VersionAdded: '2.15'
+
+# Supports --autocorrect
+Rails/ToSWithArgument:
+  Description: Identifies passing any argument to `#to_s`.
+  Enabled: false
+  Safe: false
+  VersionAdded: '2.16'
+
+# Supports --autocorrect
+Rails/TopLevelHashWithIndifferentAccess:
+  Description: Identifies top-level `HashWithIndifferentAccess`.
+  Reference: https://guides.rubyonrails.org/upgrading_ruby_on_rails.html#top-level-hashwithindifferentaccess-is-soft-deprecated
+  Enabled: false
+  Severity: warning
+  VersionAdded: '2.16'
+  VersionChanged: '2.18'
+
+Rails/TransactionExitStatement:
+  Description: Avoid the usage of `return`, `break` and `throw` in transaction blocks.
+  Reference:
+    - https://github.com/rails/rails/commit/15aa4200e083
+  Enabled: false
+  VersionAdded: '2.14'
+  TransactionMethods: []
+
+# Supports --autocorrect
+Rails/UniqBeforePluck:
+  Description: Prefer the use of uniq or distinct before pluck.
+  Enabled: false
+  VersionAdded: '0.40'
+  VersionChanged: '2.13'
+  EnforcedStyle: conservative
+  SupportedStyles:
+    - conservative
+    - aggressive
+  SafeAutoCorrect: false
+
+Rails/UniqueValidationWithoutIndex:
+  Description: Uniqueness validation should have a unique index on the database column.
+  Enabled: false
+  VersionAdded: '2.5'
+  Include:
+    - app/models/**/*.rb
+
+Rails/UnknownEnv:
+  Description: Use correct environment name.
+  Enabled: false
+  Severity: warning
+  VersionAdded: '0.51'
+  VersionChanged: '2.18'
+  Environments:
+    - development
+    - test
+    - production
+
+Rails/UnusedIgnoredColumns:
+  Description: Remove a column that does not exist from `ignored_columns`.
+  Enabled: false
+  VersionAdded: '2.11'
+  VersionChanged: '2.25'
+  Include:
+    - app/models/**/*.rb
+
+Rails/UnusedRenderContent:
+  Description: Do not specify body content for a response with a non-content status
+    code.
+  Enabled: false
+  Severity: warning
+  VersionAdded: '2.21'
+
+# Supports --autocorrect
+Rails/Validation:
+  Description: Use validates :attribute, hash of validations.
+  Enabled: false
+  VersionAdded: '0.9'
+  VersionChanged: '0.41'
+  Include:
+    - app/models/**/*.rb
+
+# Supports --autocorrect
+Rails/WhereEquals:
+  Description: Pass conditions to `where` and `where.not` as a hash instead of manually
+    constructing SQL.
+  StyleGuide: https://rails.rubystyle.guide/#hash-conditions
+  Enabled: false
+  SafeAutoCorrect: false
+  VersionAdded: '2.9'
+  VersionChanged: '2.26'
+
+# Supports --autocorrect
+Rails/WhereExists:
+  Description: Prefer `exists?(...)` over `where(...).exists?`.
+  Enabled: false
+  SafeAutoCorrect: false
+  EnforcedStyle: exists
+  SupportedStyles:
+    - exists
+    - where
+  VersionAdded: '2.7'
+  VersionChanged: '2.10'
+
+# Supports --autocorrect
+Rails/WhereMissing:
+  Description: Use `where.missing(...)` to find missing relationship records.
+  StyleGuide: https://rails.rubystyle.guide/#finding-missing-relationship-records
+  Enabled: false
+  VersionAdded: '2.16'
+
+# Supports --autocorrect
+Rails/WhereNot:
+  Description: Use `where.not(...)` instead of manually constructing negated SQL in
+    `where`.
+  StyleGuide: https://rails.rubystyle.guide/#hash-conditions
+  Enabled: false
+  VersionAdded: '2.8'
+
+Rails/WhereNotWithMultipleConditions:
+  Description: Do not use `where.not(...)` with multiple conditions.
+  StyleGuide: https://rails.rubystyle.guide/#where-not-with-multiple-attributes
+  Enabled: false
+  Severity: warning
+  VersionAdded: '2.17'
+  VersionChanged: '2.18'
+
+# Supports --autocorrect
+Rails/WhereRange:
+  Description: Use ranges in `where` instead of manually constructing SQL.
+  StyleGuide: https://rails.rubystyle.guide/#where-ranges
+  Enabled: false
+  SafeAutoCorrect: false
+  VersionAdded: '2.25'

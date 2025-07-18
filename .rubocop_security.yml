@@ -1,0 +1,55 @@
+# Department 'Security' (7): 수정
+Security/CompoundHash:
+  Description: When overwriting Object#hash to combine values, prefer delegating to
+    Array#hash over writing a custom implementation.
+  Enabled: true
+  Safe: false
+  VersionAdded: '1.28'
+  VersionChanged: '1.51'
+
+Security/Eval:
+  Description: The use of eval represents a serious security risk.
+  Enabled: true
+  VersionAdded: '0.47'
+
+# Supports --autocorrect
+Security/IoMethods:
+  Description: Checks for the first argument to `IO.read`, `IO.binread`, `IO.write`,
+    `IO.binwrite`, `IO.foreach`, and `IO.readlines`.
+  Enabled: true
+  Safe: false
+  VersionAdded: '1.22'
+
+# Supports --autocorrect
+Security/JSONLoad:
+  Description: Prefer usage of `JSON.parse` over `JSON.load` due to potential security
+    issues. See reference for more information.
+  Reference: https://ruby-doc.org/stdlib-2.7.0/libdoc/json/rdoc/JSON.html#method-i-load
+  Enabled: true
+  VersionAdded: '0.43'
+  VersionChanged: '1.22'
+  SafeAutoCorrect: false
+
+Security/MarshalLoad:
+  Description: Avoid using of `Marshal.load` or `Marshal.restore` due to potential security
+    issues. See reference for more information.
+  Reference: https://ruby-doc.org/core-2.7.0/Marshal.html#module-Marshal-label-Security+considerations
+  Enabled: true
+  VersionAdded: '0.47'
+
+Security/Open:
+  Description: The use of `Kernel#open` and `URI.open` represent a serious security
+    risk.
+  Enabled: true
+  VersionAdded: '0.53'
+  VersionChanged: '1.0'
+  Safe: false
+
+# Supports --autocorrect
+Security/YAMLLoad:
+  Description: Prefer usage of `YAML.safe_load` over `YAML.load` due to potential security
+    issues. See reference for more information.
+  Reference: https://ruby-doc.org/stdlib-2.7.0/libdoc/yaml/rdoc/YAML.html#module-YAML-label-Security
+  Enabled: true
+  VersionAdded: '0.47'
+  SafeAutoCorrect: false

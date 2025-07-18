@@ -1,0 +1,412 @@
+@import "tailwindcss";
+@source "./safelist.txt";
+
+@theme {
+    --color-wg-primary: rgb(59, 130, 246);
+    --color-wg-primary-dark: rgb(37, 99, 235);
+    --color-wg-secondary: rgb(139, 92, 246);
+    --color-wg-accent: rgb(236, 72, 153);
+    --color-wg-success: rgb(34, 197, 94);
+    --color-wg-danger: rgb(239, 68, 68);
+    --color-wg-danger-dark: rgb(220, 38, 38);
+    --color-wg-gray: rgb(107, 114, 128);
+    --color-wg-dark: rgb(30, 41, 59);
+    --color-wg-surface-light: rgba(255, 255, 255, 0.8);
+    --color-wg-border: rgb(226, 232, 240);
+    --color-wg-border-light: rgba(226, 232, 240, 0.5);
+}
+
+@layer base {
+    body {
+        min-height: 100vh;
+        font-family: system-ui, -apple-system, sans-serif;
+        color: var(--color-wg-dark);
+    }
+
+    hr {
+        border-color: var(--color-wg-border);
+    }
+
+    .disabled {
+        pointer-events: none;
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+
+    /* WireGuard 특화 컴포넌트 */
+    .wg-header {
+        background: var(--color-wg-dark);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--color-wg-border-light);
+        position: sticky;
+        top: 0;
+        z-index: 40;
+    }
+
+    .wg-container {
+        max-width: 80rem;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    .wg-header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0;
+    }
+
+    .wg-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .wg-logo-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+        background: linear-gradient(to right, var(--color-wg-primary), var(--color-wg-secondary));
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .wg-logo-text {
+        font-size: 1.25rem;
+        font-weight: 700;
+        background: linear-gradient(to right, var(--color-wg-primary), var(--color-wg-secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .wg-user-info {
+        display: none;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 0.75rem;
+        background: linear-gradient(to right, rgb(249, 250, 251), rgb(243, 244, 246));
+        border-radius: 9999px;
+        border: 1px solid rgb(209, 213, 219);
+    }
+
+    .wg-status-indicator {
+        width: 0.5rem;
+        height: 0.5rem;
+        background: var(--color-wg-success);
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+    }
+
+    /* 버튼 스타일 */
+    .wg-btn-primary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem 1rem;
+        border-radius: 0.375rem;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        background: linear-gradient(to right, var(--color-wg-primary), var(--color-wg-primary-dark));
+        color: white;
+    }
+
+    .wg-btn-primary:hover {
+    }
+
+    .wg-btn-danger {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem 1rem;
+        border-radius: 0.375rem;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        background: linear-gradient(to right, var(--color-wg-danger), var(--color-wg-danger-dark));
+        color: white;
+    }
+
+    .wg-btn-danger:hover {
+    }
+
+    /* 폼 스타일 */
+    .wg-form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .wg-label {
+        display: block;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--color-wg-dark);
+    }
+
+    .wg-input {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 2px solid var(--color-wg-border);
+        border-radius: 0.375rem;
+        outline: none;
+        transition: all 0.2s ease;
+        background: white;
+    }
+
+    .wg-input:focus {
+        border-color: var(--color-wg-primary);
+    }
+
+
+
+    @media (min-width: 640px) {
+        .wg-container {
+            padding: 0 1.5rem;
+        }
+        
+        .wg-user-info {
+            display: flex;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .wg-container {
+            padding: 0 2rem;
+        }
+    }
+}
+
+@layer utilities {
+    /* 대시보드 스타일 */
+    .wg-dashboard-header {
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+
+    .wg-dashboard-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        background: linear-gradient(to right, var(--color-wg-primary), var(--color-wg-secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 0.75rem;
+    }
+
+    .wg-dashboard-subtitle {
+        color: var(--color-wg-gray);
+        font-size: 1.125rem;
+    }
+
+    .wg-dashboard-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .wg-dashboard-card-primary {
+        display: block;
+        background: linear-gradient(135deg, var(--color-wg-primary), var(--color-wg-primary-dark));
+        color: white;
+        border-radius: 0.5rem;
+        transition: all 0.3s ease;
+        border: 1px solid rgb(209, 213, 219);
+    }
+
+    .wg-dashboard-card-primary:hover {
+        
+    }
+
+    .wg-dashboard-card-secondary {
+        display: block;
+        background: linear-gradient(135deg, var(--color-wg-secondary), var(--color-wg-accent));
+        color: white;
+        border-radius: 0.5rem;
+        transition: all 0.3s ease;
+        border: 1px solid rgb(209, 213, 219);
+    }
+
+    .wg-dashboard-card-secondary:hover {
+        
+    }
+
+    /* 로그인 페이지 스타일 */
+    .wg-login-container {
+        max-width: 40rem;
+        margin: 0 auto;
+    }
+
+    .wg-login-card {
+        background: var(--color-wg-surface-light);
+        backdrop-filter: blur(16px);
+        border-radius: 0.5rem;
+        border: 1px solid rgb(209, 213, 219);
+        overflow: hidden;
+        padding: 2rem;
+        transition: all 0.3s ease;
+    }
+
+    .wg-login-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .wg-login-icon {
+        width: 4rem;
+        height: 4rem;
+        background: linear-gradient(to right, var(--color-wg-primary), var(--color-wg-secondary));
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+    }
+
+    .wg-login-title {
+        font-size: 1.875rem;
+        font-weight: 700;
+        background: linear-gradient(to right, var(--color-wg-dark), var(--color-wg-gray));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 0.5rem;
+    }
+
+    .wg-login-subtitle {
+        color: var(--color-wg-gray);
+        font-size: 0.875rem;
+    }
+
+    /* 연결 정보 스타일 */
+    .wg-connection-info {
+        background: var(--color-wg-surface-light);
+        backdrop-filter: blur(16px);
+        border-radius: 0.5rem;
+        border: 1px solid rgb(209, 213, 219);
+        padding: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .wg-connection-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1.5rem;
+    }
+
+    .wg-connection-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--color-wg-dark);
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .wg-connection-status {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .wg-connection-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .wg-connection-item {
+        background: linear-gradient(135deg, rgb(249, 250, 251), rgb(243, 244, 246));
+        border-radius: 0.375rem;
+        padding: 1rem;
+        border: 1px solid rgb(209, 213, 219);
+    }
+
+    .wg-connection-item-header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .wg-connection-item-value {
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: var(--color-wg-dark);
+    }
+
+    @media (min-width: 768px) {
+        .wg-dashboard-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .wg-connection-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+}
+
+@media (min-width: 640px) {
+    .wg-dashboard-title {
+        font-size: 3rem;
+    }
+
+    .wg-dashboard-subtitle {
+        font-size: 1.25rem;
+    }
+}
+
+.wg-input::-webkit-outer-spin-button,
+.wg-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.wg-input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* 폰트 */
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+/* 장식적 요소 */
+.wg-decorative-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -10;
+    overflow: hidden;
+}
+
+.wg-decorative-bg::before {
+    content: '';
+    position: absolute;
+    top: -10rem;
+    right: -10rem;
+    width: 20rem;
+    height: 20rem;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+    border-radius: 50%;
+    filter: blur(3rem);
+}
+
+.wg-decorative-bg::after {
+    content: '';
+    position: absolute;
+    bottom: -10rem;
+    left: -10rem;
+    width: 20rem;
+    height: 20rem;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+    border-radius: 50%;
+    filter: blur(3rem);
+}

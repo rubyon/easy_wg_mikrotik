@@ -1,0 +1,103 @@
+# Department 'Metrics' (10): 미수정
+Metrics/AbcSize:
+  Description: A calculated magnitude based on number of assignments, branches, and
+    conditions.
+  Reference:
+    - http://c2.com/cgi/wiki?AbcMetric
+    - https://en.wikipedia.org/wiki/ABC_Software_Metric
+  Enabled: false
+  VersionAdded: '0.27'
+  VersionChanged: '1.5'
+  AllowedMethods: []
+  AllowedPatterns: []
+  CountRepeatedAttributes: true
+  Max: 17
+
+Metrics/BlockLength:
+  Description: Avoid long blocks with many lines.
+  Enabled: false
+  VersionAdded: '0.44'
+  VersionChanged: '1.5'
+  CountComments: false
+  Max: 25
+  CountAsOne: []
+  AllowedMethods:
+    - refine
+  AllowedPatterns: []
+  Exclude:
+    - "/Users/rubyon/Desktop/liaf-rails/**/*.gemspec"
+
+Metrics/BlockNesting:
+  Description: Avoid excessive block nesting.
+  StyleGuide: "#three-is-the-number-thou-shalt-count"
+  Enabled: false
+  VersionAdded: '0.25'
+  VersionChanged: '1.65'
+  CountBlocks: false
+  CountModifierForms: false
+  Max: 3
+
+Metrics/ClassLength:
+  Description: Avoid classes longer than 100 lines of code.
+  Enabled: false
+  VersionAdded: '0.25'
+  VersionChanged: '0.87'
+  CountComments: false
+  Max: 100
+  CountAsOne: []
+
+Metrics/CollectionLiteralLength:
+  Description: Checks for `Array` or `Hash` literals with many entries.
+  Enabled: false
+  VersionAdded: '1.47'
+  LengthThreshold: 250
+
+Metrics/CyclomaticComplexity:
+  Description: A complexity metric that is strongly correlated to the number of test
+    cases needed to validate a method.
+  Enabled: false
+  VersionAdded: '0.25'
+  VersionChanged: '0.81'
+  AllowedMethods: []
+  AllowedPatterns: []
+  Max: 7
+
+Metrics/MethodLength:
+  Description: Avoid methods longer than 10 lines of code.
+  StyleGuide: "#short-methods"
+  Enabled: false
+  VersionAdded: '0.25'
+  VersionChanged: '1.5'
+  CountComments: false
+  Max: 10
+  CountAsOne: []
+  AllowedMethods: []
+  AllowedPatterns: []
+
+Metrics/ModuleLength:
+  Description: Avoid modules longer than 100 lines of code.
+  Enabled: false
+  VersionAdded: '0.31'
+  VersionChanged: '0.87'
+  CountComments: false
+  Max: 100
+  CountAsOne: []
+
+Metrics/ParameterLists:
+  Description: Avoid parameter lists longer than three or four parameters.
+  StyleGuide: "#too-many-params"
+  Enabled: false
+  VersionAdded: '0.25'
+  VersionChanged: '1.5'
+  Max: 5
+  CountKeywordArgs: true
+  MaxOptionalParameters: 3
+
+Metrics/PerceivedComplexity:
+  Description: A complexity metric geared towards measuring complexity for a human reader.
+  Enabled: false
+  VersionAdded: '0.25'
+  VersionChanged: '0.81'
+  AllowedMethods: []
+  AllowedPatterns: []
+  Max: 8

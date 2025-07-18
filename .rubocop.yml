@@ -1,0 +1,32 @@
+# Omakase Ruby styling for Rails
+inherit_gem: { rubocop-rails-omakase: rubocop.yml }
+
+# Overwrite or add rules to create your own house style
+#
+# # Use `[a, [b, c]]` not `[ a, [ b, c ] ]`
+# Layout/SpaceInsideArrayLiteralBrackets:
+#   Enabled: false
+
+inherit_from:
+  - ./.rubocop_bundler.yml
+  - ./.rubocop_gemspec.yml
+  - ./.rubocop_layout.yml
+  - ./.rubocop_lint.yml
+  - ./.rubocop_metrics.yml
+  - ./.rubocop_migration.yml
+  - ./.rubocop_naming.yml
+  - ./.rubocop_performance.yml
+  - ./.rubocop_rails.yml
+  - ./.rubocop_security.yml
+  - ./.rubocop_style.yml
+
+AllCops:
+  Exclude:
+    - 'test/**/*'
+    - 'db/seeds.rb'
+
+require:
+  - .rubocop_custom_layout_space_inside_percent_literal_brackets
+
+Layout/SpaceInsidePercentLiteralBrackets:
+  Enabled: true

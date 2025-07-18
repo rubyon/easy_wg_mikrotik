@@ -1,0 +1,7 @@
+# Department 'Migration' (1): 수정
+# Supports --autocorrect
+Migration/DepartmentName:
+  Description: Check that cop names in rubocop:disable (etc) comments are given with
+    department name.
+  Enabled: true
+  VersionAdded: '0.75'

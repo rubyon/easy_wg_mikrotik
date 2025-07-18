@@ -1,0 +1,89 @@
+# Department 'Bundler' (7): 수정
+Bundler/DuplicatedGem:
+  Description: Checks for duplicate gem entries in Gemfile.
+  Enabled: false
+  Severity: warning
+  VersionAdded: '0.46'
+  VersionChanged: '1.40'
+  Include:
+    - "**/*.gemfile"
+    - "**/Gemfile"
+    - "**/gems.rb"
+
+Bundler/DuplicatedGroup:
+  Description: Checks for duplicate group entries in Gemfile.
+  Enabled: true
+  Severity: warning
+  VersionAdded: '1.56'
+  Include:
+    - "**/*.gemfile"
+    - "**/Gemfile"
+    - "**/gems.rb"
+
+Bundler/GemComment:
+  Description: Add a comment describing each gem.
+  Enabled: false
+  VersionAdded: '0.59'
+  VersionChanged: '0.85'
+  Include:
+    - "**/*.gemfile"
+    - "**/Gemfile"
+    - "**/gems.rb"
+  IgnoredGems: []
+  OnlyFor: []
+
+Bundler/GemFilename:
+  Description: Enforces the filename for managing gems.
+  Enabled: false
+  VersionAdded: '1.20'
+  EnforcedStyle: Gemfile
+  SupportedStyles:
+    - Gemfile
+    - gems.rb
+  Include:
+    - "**/Gemfile"
+    - "**/gems.rb"
+    - "**/Gemfile.lock"
+    - "**/gems.locked"
+
+Bundler/GemVersion:
+  Description: Requires or forbids specifying gem versions.
+  Enabled: false
+  VersionAdded: '1.14'
+  EnforcedStyle: required
+  SupportedStyles:
+    - required
+    - forbidden
+  Include:
+    - "**/*.gemfile"
+    - "**/Gemfile"
+    - "**/gems.rb"
+  AllowedGems: []
+
+# Supports --autocorrect
+Bundler/InsecureProtocolSource:
+  Description: The source `:gemcutter`, `:rubygems` and `:rubyforge` are deprecated
+    because HTTP requests are insecure. Please change your source to 'https://rubygems.org'
+    if possible, or 'http://rubygems.org' if not.
+  Enabled: false
+  Severity: warning
+  VersionAdded: '0.50'
+  VersionChanged: '1.40'
+  AllowHttpProtocol: true
+  Include:
+    - "**/*.gemfile"
+    - "**/Gemfile"
+    - "**/gems.rb"
+
+# Supports --autocorrect
+Bundler/OrderedGems:
+  Description: Gems within groups in the Gemfile should be alphabetically sorted.
+  Enabled: true
+  VersionAdded: '0.46'
+  VersionChanged: '0.47'
+  TreatCommentsAsGroupSeparators: true
+  ConsiderPunctuation: false
+  Include:
+    - "**/*.gemfile"
+    - "**/Gemfile"
+    - "**/gems.rb"
