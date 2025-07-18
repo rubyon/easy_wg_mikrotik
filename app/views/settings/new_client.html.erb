@@ -1,4 +1,4 @@
-<div class="max-w-7xl mx-auto" data-controller="new-client" data-new-client-wireguard-interfaces-value='<%= @wireguard_interfaces.to_json.html_safe %>'>
+<div class="max-w-7xl mx-auto" data-controller="new-client" data-new-client-wireguard-interfaces-value='<%= @wireguard_interfaces.to_json.html_safe %>' data-new-client-server-address-value="<%= ENV['SERVER_ADDRESS'] %>">
   <!-- 페이지 헤더 -->
   <div class="text-center mb-8">
     <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-600 to-indigo-600 rounded mb-4 ">
@@ -61,7 +61,6 @@
                       class="w-full px-4 py-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white transition-all duration-200 text-gray-900 font-medium"
                       data-new-client-target="interfaceSelect"
                       data-action="change->new-client#updateInterfaceInfo">
-                <option value="" class="text-gray-500">인터페이스를 선택하세요</option>
                 <% @wireguard_interfaces.each do |iface| %>
                   <option value="<%= iface[:name] %>" <%= 'selected' if (@selected_interface || @wireguard_interfaces.first&.dig(:name)) == iface[:name] %>>
                     🔗 <%= iface[:name] %>
@@ -108,7 +107,7 @@
           <div>
             <label class="block text-sm font-semibold text-green-800 mb-3">클라이언트를 식별할 이름을 입력하세요 (선택사항)</label>
             <%= f.text_field :client_name,
-                  placeholder: "예: John-iPhone, Office-Laptop (비워두면 IP로 자동 생성)",
+                  placeholder: "예: RubyOn-iPhone (비워두면 할당받은 IP로 자동 생성)",
                   class: "w-full px-4 py-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 bg-white transition-all duration-200 placeholder-gray-400" %>
             <p class="mt-2 text-sm text-green-700">💡 비워두면 할당받은 아이피로 자동 생성됩니다</p>
           </div>
@@ -133,7 +132,6 @@
                 <span>서버 엔드포인트</span>
               </label>
               <%= f.text_field :endpoint,
-                    value: "rubyon.co.kr:51820",
                     placeholder: "your-server.com:51820",
                     class: "w-full px-4 py-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 bg-white transition-all duration-200 font-mono",
                     required: true %>
@@ -149,7 +147,6 @@
                 <span>허용된 IP 대역</span>
               </label>
               <%= f.text_field :allowed_ips,
-                    value: "10.1.1.0/24,192.168.10.0/24",
                     placeholder: "0.0.0.0/0 또는 192.168.1.0/24",
                     class: "w-full px-4 py-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 bg-white transition-all duration-200 font-mono",
                     required: true %>
@@ -165,8 +162,7 @@
                 <span>클라이언트 IP 대역</span>
               </label>
               <%= f.text_field :subnet_prefix,
-                    value: "10.1.1",
-                    placeholder: "10.1.1",
+                    placeholder: "10.1.1.0",
                     class: "w-full px-4 py-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 bg-white transition-all duration-200 font-mono",
                     required: true %>
               <p class="text-xs text-purple-600 bg-purple-50 px-3 py-1 rounded">🏷️ 클라이언트에게 할당할 IP 범위</p>

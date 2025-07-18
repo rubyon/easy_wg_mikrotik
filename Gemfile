@@ -67,6 +67,7 @@ group :test do
 end
 
 gem "base64"
+gem "dotenv-rails"
 gem "rbnacl"
 gem "routeros-api"
 gem "rqrcode"

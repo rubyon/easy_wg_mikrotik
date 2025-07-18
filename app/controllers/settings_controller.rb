@@ -107,7 +107,7 @@ class SettingsController < ApplicationController
     interface_name = params[:interface_name]
     endpoint = params[:endpoint]
     allowed_ips = params[:allowed_ips]
-    subnet_prefix = params[:subnet_prefix]
+    subnet_prefix = params[:subnet_prefix].to_s.split(".")[0, 3].join(".")
     persistent_keepalive = params[:persistent_keepalive]
 
     # 필수 필드 검증
@@ -274,6 +274,30 @@ class SettingsController < ApplicationController
         }
         format.json { render json: { success: false, error: "클라이언트 삭제 중 오류가 발생했습니다: #{e.message}" } }
       end
+    end
+  end
+
+  def fetch_wireguard_address
+    api = mikrotik_api
+    unless api
+      render json: { error: "MikroTik 연결에 실패했습니다." }, status: :service_unavailable and return
+    end
+
+    response = api.command("/ip/address/print")
+    unless response.ok?
+      render json: { error: "MikroTik 응답 실패" }, status: :bad_gateway and return
+    end
+
+    iface = response.data.find { |entry| entry[:interface] == params[:interface] }
+    bridge_iface = response.data.find { |entry| entry[:interface] == "bridge1" }
+    if iface
+      render json:   {
+               network:        iface[:network],
+               bridge_network: bridge_iface&.[](:network)
+             },
+             status: :ok
+    else
+      render json: { error: "인터페이스를 찾을 수 없습니다." }, status: :not_found
     end
   end
 

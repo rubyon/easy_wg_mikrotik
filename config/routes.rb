@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   post "create_client", to: "settings#create_client"
   get "clients", to: "settings#clients"
   delete "clients/:id", to: "settings#delete_client", as: "delete_client"
+
+  get "fetch_wireguard_address", to: "settings#fetch_wireguard_address"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

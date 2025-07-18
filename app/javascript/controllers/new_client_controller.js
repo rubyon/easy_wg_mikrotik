@@ -2,7 +2,10 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets = ["interfaceSelect", "interfaceInfo", "interfacePublicKey", "interfaceListenPort"]
-  static values = { wireguardInterfaces: Array }
+  static values = {
+    wireguardInterfaces: Array,
+    serverAddress: String
+  }
 
   connect() {
     // 페이지 로드시 첫 번째 인터페이스 선택
@@ -35,10 +38,33 @@ export default class extends Controller {
         this.interfaceListenPortTarget.textContent = selectedInterface.listen_port || '설정되지 않음'
       }
 
+      const subnetInput = this.element.querySelector("input[name='client[subnet_prefix]'], input[name='subnet_prefix']")
+      const allowedIpsInput = this.element.querySelector("input[name='client[allowed_ips]'], input[name='allowed_ips']")
+
+      if (subnetInput) subnetInput.value = ""
+      if (allowedIpsInput) allowedIpsInput.value = ""
+
+      fetch(`/fetch_wireguard_address?interface=${encodeURIComponent(interfaceName)}`)
+          .then(response => {
+            if (!response.ok) throw new Error("API 호출 실패")
+            return response.json()
+          })
+          .then(data => {
+            if (data.network) {
+              if (subnetInput) subnetInput.value = data.network
+              if (allowedIpsInput) allowedIpsInput.value = `${data.network}/24`
+              if (data.bridge_network) {
+                if (allowedIpsInput) allowedIpsInput.value += `,${data.bridge_network}/24`
+              }
+            }
+          })
+          .catch(error => {
+            console.error("주소 정보 로드 실패:", error)
+          })
+
       const endpointInput = this.element.querySelector("input[name='client[endpoint]'], input[name='endpoint']")
       if (endpointInput && selectedInterface.listen_port) {
-        const baseHost = endpointInput.value.replace(/:\d+$/, '') // 기존 포트 제거
-        endpointInput.value = `${baseHost}:${selectedInterface.listen_port}`
+        endpointInput.value = `${this.serverAddressValue}:${selectedInterface.listen_port}`
       }
 
       this.interfaceInfoTarget.classList.remove('hidden')
