@@ -59,7 +59,7 @@ export default class extends Controller {
             }
           })
           .catch(error => {
-            console.error("주소 정보 로드 실패:", error)
+            // 네트워크 오류시 무시 (사용자에게 별도 알림 불필요)
           })
 
       const endpointInput = this.element.querySelector("input[name='client[endpoint]'], input[name='endpoint']")
