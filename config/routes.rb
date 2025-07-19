@@ -1,20 +1,23 @@
 Rails.application.routes.draw do
-  root "settings#login"
+  root "authentication#login"
+
+  # Authentication routes
+  get "login", to: "authentication#login"
+  post "login", to: "authentication#authenticate"
+  delete "logout", to: "authentication#logout"
 
   # Language switching route
-  get "set_locale/:locale", to: "settings#change_locale", as: "set_locale"
+  get "set_locale/:locale", to: "authentication#change_locale", as: "set_locale"
 
-  get "login", to: "settings#login"
-  post "login", to: "settings#authenticate"
-  delete "logout", to: "settings#logout"
+  # Dashboard
+  get "dashboard", to: "dashboard#index"
 
-  get "dashboard", to: "settings#index"
-  get "new_client", to: "settings#new_client"
-  post "create_client", to: "settings#create_client"
-  get "clients", to: "settings#clients"
-  delete "clients/:id", to: "settings#delete_client", as: "delete_client"
-
-  get "fetch_wireguard_address", to: "settings#fetch_wireguard_address"
+  # Client management with RESTful routes
+  resources :clients, only: [ :index, :new, :create, :destroy ] do
+    collection do
+      get :fetch_wireguard_address
+    end
+  end
 
   get "up" => "rails/health#show", as: :rails_health_check
 end

@@ -179,7 +179,7 @@
 
               <!-- 카드 푸터 -->
               <div class="px-6 py-4 bg-gray-50 border-t border-gray-100 rounded-b-xl">
-                <%= button_to delete_client_path(peer[:'.id']),
+                <%= button_to client_path(peer[:'.id']),
                       method: :delete,
                       data: {
                         turbo_confirm: t('clients.delete_confirm', name: peer[:name] || peer[:'.id']),

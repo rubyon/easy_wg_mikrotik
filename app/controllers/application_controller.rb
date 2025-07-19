@@ -12,4 +12,15 @@ class ApplicationController < ActionController::Base
       I18n.locale = I18n.default_locale
     end
   end
+
+  def require_mikrotik_login
+    unless logged_in?
+      flash[:error] = t("flash.login_required")
+      redirect_to login_path
+    end
+  end
+
+  def logged_in?
+    session[:mikrotik_host].present? && session[:mikrotik_user].present?
+  end
 end

@@ -44,7 +44,7 @@ export default class extends Controller {
       if (subnetInput) subnetInput.value = ""
       if (allowedIpsInput) allowedIpsInput.value = ""
 
-      fetch(`/fetch_wireguard_address?interface=${encodeURIComponent(interfaceName)}`)
+      fetch(`/clients/fetch_wireguard_address?interface=${encodeURIComponent(interfaceName)}`)
           .then(response => {
             if (!response.ok) throw new Error("API 호출 실패")
             return response.json()
