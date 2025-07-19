@@ -228,19 +228,8 @@ class ClientsController < ApplicationController
 
   private
   def mikrotik_api
-    return nil unless logged_in?
-
-    api = RouterOS::API.new(
-      session[:mikrotik_host],
-      session[:mikrotik_port].to_i,
-      ssl: session[:mikrotik_ssl]
-    )
-
-    if api.login(session[:mikrotik_user], session[:mikrotik_password]).ok?
-      api
-    else
-      nil
-    end
+    @mikrotik_service ||= MikrotikApiService.new(session)
+    @mikrotik_service.connect
   end
 
   # WireGuard 키 페어 생성
@@ -255,28 +244,14 @@ class ClientsController < ApplicationController
 
   # WireGuard 인터페이스 목록 조회
   def fetch_wireguard_interfaces(api)
-    response = api.command("/interface/wireguard/print")
-    if response.ok?
-      response.data.map do |iface|
-        {
-          name:        iface[:name],
-          public_key:  iface[:"public-key"],
-          listen_port: iface[:"listen-port"],
-          disabled:    iface[:disabled] == "true"
-        }
-      end.reject { |iface| iface[:disabled] }
-    else
-      []
-    end
+    @mikrotik_service ||= MikrotikApiService.new(session)
+    @mikrotik_service.fetch_wireguard_interfaces(api)
   end
 
   # 서버 공개키 조회
   def fetch_server_public_key(api, interface_name)
-    response = api.command("/interface/wireguard/print")
-    response.data.each do |iface|
-      return iface[:"public-key"] if iface[:name] == interface_name
-    end
-    nil
+    @mikrotik_service ||= MikrotikApiService.new(session)
+    @mikrotik_service.fetch_server_public_key(api, interface_name)
   end
 
   # 사용 가능한 IP 탐색
@@ -299,16 +274,8 @@ class ClientsController < ApplicationController
 
   # 피어 등록
   def register_peer(api, public_key, client_address, client_name, interface_name, persistent_keepalive)
-    api.command(
-      "/interface/wireguard/peers/add",
-      {
-        "name"                 => client_name,
-        "interface"            => interface_name,
-        "public-key"           => public_key,
-        "allowed-address"      => client_address,
-        "persistent-keepalive" => persistent_keepalive.to_s
-      }
-    )
+    @mikrotik_service ||= MikrotikApiService.new(session)
+    @mikrotik_service.register_peer(api, public_key, client_address, client_name, interface_name, persistent_keepalive)
   end
 
   # 클라이언트 설정 파일 생성
