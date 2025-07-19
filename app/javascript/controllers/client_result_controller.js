@@ -18,18 +18,26 @@ export default class extends Controller {
 
   downloadQR(event) {
     const clientName = event.params.clientName
-    const svgElement = document.querySelector('svg')
+    const qrContainer = document.querySelector('#qr-code-container')
+    const svgElement = qrContainer.querySelector('svg')
+    
+    if (!svgElement) {
+      console.error('QR code SVG not found')
+      return
+    }
+    
     const svgData = new XMLSerializer().serializeToString(svgElement)
     const canvas = document.createElement('canvas')
     const ctx = canvas.getContext('2d')
     const img = new Image()
     
     img.onload = function() {
-      canvas.width = img.width
-      canvas.height = img.height
+      const padding = 20 // 40px 여백
+      canvas.width = img.width + (padding * 2)
+      canvas.height = img.height + (padding * 2)
       ctx.fillStyle = 'white'
       ctx.fillRect(0, 0, canvas.width, canvas.height)
-      ctx.drawImage(img, 0, 0)
+      ctx.drawImage(img, padding, padding)
       
       canvas.toBlob(function(blob) {
         const url = window.URL.createObjectURL(blob)
