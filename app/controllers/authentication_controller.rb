@@ -80,9 +80,4 @@ class AuthenticationController < ApplicationController
       redirect_to login_path
     end
   end
-
-  private
-  def logged_in?
-    session[:mikrotik_host].present? && session[:mikrotik_user].present?
-  end
 end

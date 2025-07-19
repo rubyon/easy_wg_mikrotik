@@ -243,10 +243,6 @@ class ClientsController < ApplicationController
     end
   end
 
-  def logged_in?
-    session[:mikrotik_host].present? && session[:mikrotik_user].present?
-  end
-
   # WireGuard 키 페어 생성
   def generate_wireguard_keypair
     private_key = RbNaCl::PrivateKey.generate
