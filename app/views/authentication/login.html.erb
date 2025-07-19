@@ -4,9 +4,7 @@
     <!-- 헤더 섹션 -->
     <div class="wg-login-header">
       <div class="wg-login-icon">
-        <svg class="w-8 h-8 text-white" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
-        </svg>
+        <i class="bi bi-lock text-white" style="font-size: 2rem;"></i>
       </div>
       <h2 class="wg-login-title"><%= t('login.title') %></h2>
       <p class="wg-login-subtitle"><%= t('login.subtitle') %></p>
@@ -31,9 +29,7 @@
         <div class="wg-form-group sm:col-span-2">
           <%= f.label :mikrotik_host, class: "wg-label group-focus-within:text-wg-primary transition-colors" do %>
             <span class="flex items-center space-x-2">
-              <svg class="w-4 h-4" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2"></path>
-              </svg>
+              <i class="bi bi-hdd-network"></i>
               <span><%= t('login.host_label') %></span>
             </span>
           <% end %>
@@ -47,9 +43,7 @@
         <div class="wg-form-group">
           <%= f.label :mikrotik_port, class: "wg-label group-focus-within:text-wg-primary transition-colors" do %>
             <span class="flex items-center space-x-2">
-              <svg class="w-4 h-4" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-              </svg>
+              <i class="bi bi-ethernet"></i>
               <span><%= t('login.port_label') %></span>
             </span>
           <% end %>
@@ -63,9 +57,7 @@
       <div class="wg-form-group">
         <%= f.label :mikrotik_user, class: "wg-label group-focus-within:text-wg-primary transition-colors" do %>
           <span class="flex items-center space-x-2">
-            <svg class="w-4 h-4" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-            </svg>
+            <i class="bi bi-person"></i>
             <span><%= t('login.username_label') %></span>
           </span>
         <% end %>
@@ -80,10 +72,7 @@
       <div class="wg-form-group">
         <%= f.label :mikrotik_password, class: "wg-label group-focus-within:text-wg-primary transition-colors" do %>
           <span class="flex items-center space-x-2">
-            <svg class="w-4 h-4" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-            </svg>
+            <i class="bi bi-key"></i>
             <span><%= t('login.password_label') %></span>
           </span>
         <% end %>
@@ -112,9 +101,7 @@
     <!-- 안내 메시지 -->
     <div class="mt-8 text-center">
       <div class="inline-flex items-center space-x-2 px-4 py-2 bg-blue-50/50 rounded-full border border-gray-300">
-        <svg class="w-4 h-4 text-wg-primary" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-        </svg>
+        <i class="bi bi-info-circle text-wg-primary"></i>
         <span class="text-sm font-medium text-wg-primary"><%= t('login.api_info') %></span>
       </div>
     </div>
