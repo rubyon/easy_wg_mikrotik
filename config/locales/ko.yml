@@ -1,0 +1,197 @@
+ko:
+  app:
+    name: "WireGuard MikroTik 관리"
+    description: "MikroTik RouterOS를 통한 VPN 클라이언트 관리"
+  
+  nav:
+    dashboard: "대시보드"
+    login: "로그인"
+    logout: "로그아웃"
+    new_client: "새 클라이언트"
+    clients: "클라이언트 목록"
+    language: "언어"
+  
+  dashboard:
+    title: "WireGuard 대시보드"
+    subtitle: "MikroTik RouterOS를 통한 VPN 클라이언트 관리"
+    new_client_card:
+      title: "새 클라이언트 생성"
+      description: "WireGuard VPN 클라이언트를 생성하고 QR 코드를 받으세요"
+      action: "시작하기"
+      badge: "신규"
+    clients_card:
+      title: "클라이언트 목록"
+      description: "기존 클라이언트를 조회하고 관리하세요"
+      action: "관리하기"
+      badge: "목록"
+    connection:
+      title: "연결 상태"
+      status: "연결됨"
+      host: "호스트"
+      user: "사용자"
+      port: "포트"
+    guide:
+      title: "빠른 시작 가이드"
+      step1:
+        title: "클라이언트 생성"
+        description: "새 클라이언트 생성을 클릭하여 WireGuard 설정을 만드세요"
+      step2:
+        title: "QR 코드 스캔"
+        description: "생성된 QR 코드를 WireGuard 앱으로 스캔하거나 파일을 다운로드하세요"
+      step3:
+        title: "클라이언트 관리"
+        description: "클라이언트 목록에서 기존 클라이언트를 조회하고 관리하세요"
+  
+  login:
+    title: "MikroTik 로그인"
+    subtitle: "WireGuard 관리 시스템에 접속하세요"
+    host_label: "MikroTik 호스트"
+    host_placeholder: "192.168.1.1 또는 example.com"
+    port_label: "포트"
+    port_placeholder: "8728"
+    username_label: "사용자명"
+    username_placeholder: "admin"
+    password_label: "비밀번호"
+    login_button: "로그인"
+    connecting: "연결 중..."
+    ssl_label: "SSL 사용"
+    remember_label: "로그인 정보 저장하기"
+    api_info: "MikroTik RouterOS API (기본 포트: 8728)"
+  
+  new_client:
+    title: "새 클라이언트 생성"
+    subtitle: "WireGuard VPN 클라이언트를 설정하고 QR 코드를 생성하세요"
+    steps:
+      interface: "인터페이스"
+      config: "설정 구성"
+      qr: "QR 생성"
+    interface_section:
+      title: "WireGuard 인터페이스 선택"
+      label: "사용할 인터페이스를 선택하세요"
+      info_title: "인터페이스 정보"
+      public_key: "공개키"
+      listen_port: "Listen Port"
+    name_section:
+      title: "클라이언트 이름 설정"
+      label: "클라이언트를 식별할 이름을 입력하세요 (선택사항)"
+      placeholder: "예: RubyOn-iPhone (비워두면 할당받은 IP로 자동 생성)"
+      note: "💡 비워두면 할당받은 아이피로 자동 생성됩니다"
+    config_section:
+      title: "네트워크 설정 구성"
+      endpoint_label: "서버 엔드포인트"
+      endpoint_placeholder: "your-server.com:51820"
+      endpoint_note: "🌐 공인 IP 또는 도메인:포트"
+      allowed_ips_label: "허용된 IP 대역"
+      allowed_ips_placeholder: "0.0.0.0/0 또는 192.168.1.0/24"
+      allowed_ips_note: "🔒 클라이언트가 접근할 수 있는 네트워크"
+      subnet_label: "클라이언트 IP 대역"
+      subnet_placeholder: "10.1.1.0"
+      subnet_note: "🏷️ 클라이언트에게 할당할 IP 범위"
+      keepalive_label: "Keep Alive (초)"
+      keepalive_note: "⏰ NAT 환경에서 연결 유지를 위한 주기"
+    create_button: "🚀 클라이언트 생성하기"
+    cancel_button: "취소"
+    notice:
+      title: "중요한 안내사항"
+      mobile:
+        title: "📱 모바일 설정"
+        description: "생성된 QR 코드를 WireGuard 앱으로 스캔하세요. 코드는 한 번만 표시됩니다!"
+      pc:
+        title: "💻 PC 설정"
+        description: "설정 파일을 다운로드하여 WireGuard 클라이언트에서 import하세요."
+      register:
+        title: "⚡ 즉시 등록"
+        description: "클라이언트 생성과 동시에 MikroTik 라우터에 피어가 등록됩니다."
+      manage:
+        title: "🔧 관리 기능"
+        description: "생성 후 클라이언트 목록에서 언제든 관리하고 삭제할 수 있습니다."
+  
+  client_result:
+    title: "클라이언트 생성 완료!"
+    subtitle: "새 WireGuard 클라이언트가 성공적으로 생성되었습니다"
+    client_info: "클라이언트 정보"
+    client_name: "클라이언트명"
+    assigned_ip: "할당 IP"
+    interface: "인터페이스"
+    server: "서버"
+    created_time: "생성시간"
+    config_file: "설정 파일"
+    qr_code: "모바일 QR 코드"
+    download_section: "파일 다운로드"
+    download_config: "설정 파일 다운로드"
+    download_qr: "QR 코드 이미지 저장"
+    next_steps:
+      title: "설정 완료 - 다음 단계"
+      mobile:
+        title: "📱 모바일 설정"
+        description: "WireGuard 앱을 설치하고 위의 QR 코드를 스캔하세요."
+      pc:
+        title: "💻 PC 설정"
+        description: "WireGuard 클라이언트를 설치하고 설정 파일을 import하세요."
+      test:
+        title: "🔗 연결 테스트"
+        description: "연결을 활성화하고 VPN이 정상 작동하는지 확인하세요."
+      manage:
+        title: "🔧 관리"
+        description: "문제가 있으면 클라이언트 목록에서 관리하세요."
+    actions:
+      create_another: "다른 클라이언트 생성"
+      view_clients: "클라이언트 목록 보기"
+      back_dashboard: "대시보드로 돌아가기"
+  
+  clients:
+    title: "클라이언트 목록"
+    subtitle: "등록된 WireGuard 클라이언트들을 관리하세요"
+    new_client: "새 클라이언트 생성"
+    registered_clients: "등록된 클라이언트"
+    filter: "필터:"
+    all_interfaces: "모든 인터페이스"
+    reset: "초기화"
+    no_clients:
+      title: "클라이언트가 없습니다"
+      description: "첫 번째 WireGuard 클라이언트를 생성해서 시작해보세요."
+      action: "첫 클라이언트 생성하기"
+    status:
+      active: "활성"
+      waiting: "대기"
+    fields:
+      ip_address: "IP 주소"
+      public_key: "공개키"
+      keep_alive: "Keep Alive"
+      last_activity: "마지막 활동"
+      never_connected: "연결된 적 없음"
+      not_set: "설정안함"
+      seconds: "초"
+    delete_client: "클라이언트 삭제"
+    delete_confirm: "정말로 \"%{name}\" 클라이언트를 삭제하시겠습니까?\n\n이 작업은 되돌릴 수 없습니다."
+    stats:
+      total: "총 %{count}개의 클라이언트"
+      description: "활성 상태인 클라이언트들을 관리하세요"
+    refresh: "새로고침"
+  
+  flash:
+    login_success: "MikroTik에 성공적으로 로그인했습니다."
+    login_failed: "로그인에 실패했습니다. 정보를 확인해주세요."
+    connection_failed: "연결에 실패했습니다: %{error}"
+    logout_success: "로그아웃되었습니다."
+    login_required: "먼저 MikroTik에 로그인해주세요."
+    language_changed: "언어가 변경되었습니다."
+    required_fields: "모든 필드를 입력해주세요."
+    mikrotik_connection_failed: "MikroTik 연결에 실패했습니다."
+    client_created: "새 클라이언트가 성공적으로 생성되었습니다!"
+    client_deleted: "클라이언트가 성공적으로 삭제되었습니다."
+    client_delete_failed: "클라이언트 삭제에 실패했습니다: %{error}"
+    no_wireguard_interfaces: "WireGuard 인터페이스가 없습니다. MikroTik에서 WireGuard 인터페이스를 먼저 생성해주세요."
+    wireguard_interface_error: "WireGuard 인터페이스 조회 중 오류가 발생했습니다."
+    interface_required: "WireGuard 인터페이스를 선택해주세요."
+    config_fields_required: "모든 설정 필드를 입력해주세요."
+    server_public_key_error: "서버 공개키를 가져올 수 없습니다. 선택한 WireGuard 인터페이스를 확인해주세요."
+    peers_list_error: "피어 목록을 가져올 수 없습니다."
+    peer_registration_failed: "피어 등록에 실패했습니다: %{error}"
+    client_creation_error: "클라이언트 생성 중 오류가 발생했습니다: %{error}"
+  
+  languages:
+    ko: "한국어"
+    en: "English"
+    zh: "中文"
+    ja: "日本語"

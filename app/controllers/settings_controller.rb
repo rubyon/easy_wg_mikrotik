@@ -4,7 +4,7 @@ require "rbnacl"
 require "base64"
 
 class SettingsController < ApplicationController
-  before_action :require_mikrotik_login, except: [ :login, :authenticate ]
+  before_action :require_mikrotik_login, except: [ :login, :authenticate, :change_locale ]
 
   START_IP = 2
 
@@ -14,7 +14,7 @@ class SettingsController < ApplicationController
   end
 
   def login
-    redirect_to root_path if logged_in?
+    redirect_to dashboard_path if logged_in?
   end
 
   def authenticate
@@ -26,7 +26,7 @@ class SettingsController < ApplicationController
     remember_me = params[:remember_me] == "1"
 
     if host.blank? || user.blank? || password.blank?
-      flash.now[:error] = "모든 필드를 입력해주세요."
+      flash.now[:error] = t("flash.required_fields")
       render :login and return
     end
 
@@ -55,14 +55,14 @@ class SettingsController < ApplicationController
         end
 
         api.close
-        flash[:success] = "MikroTik에 성공적으로 로그인했습니다."
-        redirect_to root_path
+        flash[:success] = t("flash.login_success")
+        redirect_to dashboard_path
       else
-        flash.now[:error] = "로그인에 실패했습니다. 정보를 확인해주세요."
+        flash.now[:error] = t("flash.login_failed")
         render :login
       end
     rescue => e
-      flash.now[:error] = "연결에 실패했습니다: #{e.message}"
+      flash.now[:error] = t("flash.connection_failed", error: e.message)
       render :login
     end
   end
@@ -73,7 +73,7 @@ class SettingsController < ApplicationController
     session.delete(:mikrotik_password)
     session.delete(:mikrotik_port)
     session.delete(:mikrotik_ssl)
-    flash[:success] = "로그아웃되었습니다."
+    flash[:success] = t("flash.logout_success")
     redirect_to login_path
   end
 
@@ -82,7 +82,7 @@ class SettingsController < ApplicationController
     begin
       api = mikrotik_api
       unless api
-        flash[:error] = "MikroTik 연결에 실패했습니다."
+        flash[:error] = t("flash.mikrotik_connection_failed")
         redirect_to root_path and return
       end
 
@@ -90,15 +90,14 @@ class SettingsController < ApplicationController
       api.close
 
       if @wireguard_interfaces.empty?
-        flash[:error] = "WireGuard 인터페이스가 없습니다. MikroTik에서 WireGuard 인터페이스를 먼저 생성해주세요."
+        flash[:error] = t("flash.no_wireguard_interfaces")
         redirect_to root_path and return
       end
 
       # URL 파라미터에서 선택할 인터페이스 설정
       @selected_interface = params[:interface]
-    rescue => e
-      Rails.logger.error "WireGuard 인터페이스 조회 오류: #{e.message}"
-      flash[:error] = "WireGuard 인터페이스 조회 중 오류가 발생했습니다."
+    rescue
+      flash[:error] = t("flash.wireguard_interface_error")
       redirect_to root_path
     end
   end
@@ -112,12 +111,12 @@ class SettingsController < ApplicationController
 
     # 필수 필드 검증
     unless interface_name.present?
-      flash[:error] = "WireGuard 인터페이스를 선택해주세요."
+      flash[:error] = t("flash.interface_required")
       redirect_to new_client_path and return
     end
 
     unless endpoint.present? && allowed_ips.present? && subnet_prefix.present? && persistent_keepalive.present?
-      flash[:error] = "모든 설정 필드를 입력해주세요."
+      flash[:error] = t("flash.config_fields_required")
       redirect_to new_client_path and return
     end
 
@@ -125,7 +124,7 @@ class SettingsController < ApplicationController
       # MikroTik API 연결
       api = mikrotik_api
       unless api
-        flash[:error] = "MikroTik 연결에 실패했습니다."
+        flash[:error] = t("flash.mikrotik_connection_failed")
         redirect_to new_client_path and return
       end
 
@@ -135,7 +134,7 @@ class SettingsController < ApplicationController
       # 2. 서버 공개키 조회
       server_public_key = fetch_server_public_key(api, interface_name)
       unless server_public_key
-        flash[:error] = "서버 공개키를 가져올 수 없습니다. 선택한 WireGuard 인터페이스를 확인해주세요."
+        flash[:error] = t("flash.server_public_key_error")
         api.close
         redirect_to new_client_path and return
       end
@@ -143,7 +142,7 @@ class SettingsController < ApplicationController
       # 3. 피어 목록 조회
       peers_response = api.command("/interface/wireguard/peers/print")
       unless peers_response.ok?
-        flash[:error] = "피어 목록을 가져올 수 없습니다."
+        flash[:error] = t("flash.peers_list_error")
         api.close
         redirect_to new_client_path and return
       end
@@ -159,7 +158,7 @@ class SettingsController < ApplicationController
       # 4. MikroTik에 피어 등록
       add_peer_response = register_peer(api, public_key, client_address, client_name, interface_name, persistent_keepalive)
       unless add_peer_response.ok?
-        flash[:error] = "피어 등록에 실패했습니다: #{add_peer_response.data}"
+        flash[:error] = t("flash.peer_registration_failed", error: add_peer_response.data)
         api.close
         redirect_to new_client_path and return
       end
@@ -179,12 +178,10 @@ class SettingsController < ApplicationController
       @success = true
 
       api.close
-      flash.now[:success] = "새 클라이언트가 성공적으로 생성되었습니다!"
+      flash.now[:success] = t("flash.client_created")
       render :client_result
     rescue => e
-      Rails.logger.error "클라이언트 생성 오류: #{e.message}"
-      Rails.logger.error e.backtrace.join("\n")
-      flash[:error] = "클라이언트 생성 중 오류가 발생했습니다: #{e.message}"
+      flash[:error] = t("flash.client_creation_error", error: e.message)
       redirect_to new_client_path
     end
   end
@@ -193,7 +190,7 @@ class SettingsController < ApplicationController
     begin
       api = mikrotik_api
       unless api
-        flash[:error] = "MikroTik 연결에 실패했습니다."
+        flash[:error] = t("flash.mikrotik_connection_failed")
         redirect_to root_path and return
       end
 
@@ -211,15 +208,14 @@ class SettingsController < ApplicationController
         end
       else
         @peers = []
-        flash.now[:error] = "피어 목록을 가져올 수 없습니다."
+        flash.now[:error] = t("flash.peers_list_error")
       end
 
       api.close
-    rescue => e
-      Rails.logger.error "피어 목록 조회 오류: #{e.message}"
+    rescue
       @peers = []
       @wireguard_interfaces = []
-      flash.now[:error] = "피어 목록 조회 중 오류가 발생했습니다."
+      flash.now[:error] = t("flash.peers_list_error")
     end
   end
 
@@ -231,10 +227,10 @@ class SettingsController < ApplicationController
       unless api
         respond_to do |format|
           format.turbo_stream {
-            flash.now[:error] = "MikroTik 연결에 실패했습니다."
+            flash.now[:error] = t("flash.mikrotik_connection_failed")
             render turbo_stream: turbo_stream.replace("flash", partial: "shared/flash")
           }
-          format.json { render json: { success: false, error: "MikroTik 연결에 실패했습니다." } }
+          format.json { render json: { success: false, error: t("flash.mikrotik_connection_failed") } }
         end
         return
       end
@@ -246,33 +242,31 @@ class SettingsController < ApplicationController
         api.close
         respond_to do |format|
           format.turbo_stream {
-            flash.now[:success] = "클라이언트가 성공적으로 삭제되었습니다."
+            flash.now[:success] = t("flash.client_deleted")
             render turbo_stream: [
               turbo_stream.remove("peer_#{peer_id}"),
               turbo_stream.replace("flash", partial: "shared/flash")
             ]
           }
-          format.json { render json: { success: true, message: "클라이언트가 성공적으로 삭제되었습니다." } }
+          format.json { render json: { success: true, message: t("flash.client_deleted") } }
         end
       else
         api.close
         respond_to do |format|
           format.turbo_stream {
-            flash.now[:error] = "클라이언트 삭제에 실패했습니다: #{delete_response.data}"
+            flash.now[:error] = t("flash.client_delete_failed", error: delete_response.data)
             render turbo_stream: turbo_stream.replace("flash", partial: "shared/flash")
           }
-          format.json { render json: { success: false, error: "클라이언트 삭제에 실패했습니다: #{delete_response.data}" } }
+          format.json { render json: { success: false, error: t("flash.client_delete_failed", error: delete_response.data) } }
         end
       end
     rescue => e
-      Rails.logger.error "클라이언트 삭제 오류: #{e.message}"
-      Rails.logger.error e.backtrace.join("\n")
       respond_to do |format|
         format.turbo_stream {
-          flash.now[:error] = "클라이언트 삭제 중 오류가 발생했습니다: #{e.message}"
+          flash.now[:error] = t("flash.client_delete_failed", error: e.message)
           render turbo_stream: turbo_stream.replace("flash", partial: "shared/flash")
         }
-        format.json { render json: { success: false, error: "클라이언트 삭제 중 오류가 발생했습니다: #{e.message}" } }
+        format.json { render json: { success: false, error: t("flash.client_delete_failed", error: e.message) } }
       end
     end
   end
@@ -280,12 +274,12 @@ class SettingsController < ApplicationController
   def fetch_wireguard_address
     api = mikrotik_api
     unless api
-      render json: { error: "MikroTik 연결에 실패했습니다." }, status: :service_unavailable and return
+      render json: { error: t("flash.mikrotik_connection_failed") }, status: :service_unavailable and return
     end
 
     response = api.command("/ip/address/print")
     unless response.ok?
-      render json: { error: "MikroTik 응답 실패" }, status: :bad_gateway and return
+      render json: { error: t("flash.connection_failed", error: "API response failed") }, status: :bad_gateway and return
     end
 
     iface = response.data.find { |entry| entry[:interface] == params[:interface] }
@@ -297,7 +291,23 @@ class SettingsController < ApplicationController
              },
              status: :ok
     else
-      render json: { error: "인터페이스를 찾을 수 없습니다." }, status: :not_found
+      render json: { error: t("flash.interface_required") }, status: :not_found
+    end
+  end
+
+  # 언어 변경
+  def change_locale
+    locale = params[:locale]
+    if locale.present? && I18n.available_locales.include?(locale.to_sym)
+      session[:locale] = locale
+      flash[:success] = t("flash.language_changed")
+    end
+
+    # 로그인 상태에 따라 리다이렉트
+    if logged_in?
+      redirect_to dashboard_path
+    else
+      redirect_to login_path
     end
   end
 
@@ -308,7 +318,7 @@ class SettingsController < ApplicationController
 
   def require_mikrotik_login
     unless logged_in?
-      flash[:error] = "먼저 MikroTik에 로그인해주세요."
+      flash[:error] = t("flash.login_required")
       redirect_to login_path
     end
   end

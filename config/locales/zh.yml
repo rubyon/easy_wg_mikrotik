@@ -1,0 +1,197 @@
+zh:
+  app:
+    name: "WireGuard MikroTik 管理器"
+    description: "通过 MikroTik RouterOS 进行 VPN 客户端管理"
+  
+  nav:
+    dashboard: "仪表板"
+    login: "登录"
+    logout: "登出"
+    new_client: "新客户端"
+    clients: "客户端列表"
+    language: "语言"
+  
+  dashboard:
+    title: "WireGuard 仪表板"
+    subtitle: "通过 MikroTik RouterOS 进行 VPN 客户端管理"
+    new_client_card:
+      title: "创建新客户端"
+      description: "创建 WireGuard VPN 客户端并获取二维码"
+      action: "开始"
+      badge: "新建"
+    clients_card:
+      title: "客户端列表"
+      description: "查看和管理现有客户端"
+      action: "管理"
+      badge: "列表"
+    connection:
+      title: "连接状态"
+      status: "已连接"
+      host: "主机"
+      user: "用户"
+      port: "端口"
+    guide:
+      title: "快速入门指南"
+      step1:
+        title: "创建客户端"
+        description: "点击创建新客户端来创建 WireGuard 配置"
+      step2:
+        title: "扫描二维码"
+        description: "使用 WireGuard 应用扫描生成的二维码或下载文件"
+      step3:
+        title: "管理客户端"
+        description: "从客户端列表查看和管理现有客户端"
+  
+  login:
+    title: "MikroTik 登录"
+    subtitle: "连接到 WireGuard 管理系统"
+    host_label: "MikroTik 主机"
+    host_placeholder: "192.168.1.1 或 example.com"
+    port_label: "端口"
+    port_placeholder: "8728"
+    username_label: "用户名"
+    username_placeholder: "admin"
+    password_label: "密码"
+    login_button: "登录"
+    connecting: "连接中..."
+    ssl_label: "使用 SSL"
+    remember_label: "记住登录信息"
+    api_info: "MikroTik RouterOS API (默认端口: 8728)"
+
+  new_client:
+    title: "创建新客户端"
+    subtitle: "配置 WireGuard VPN 客户端并生成二维码"
+    steps:
+      interface: "接口设置"
+      config: "详细配置"
+      qr: "生成QR"
+    interface_section:
+      title: "选择 WireGuard 接口"
+      label: "选择要使用的接口"
+      info_title: "接口信息"
+      public_key: "公钥"
+      listen_port: "监听端口"
+    name_section:
+      title: "设置客户端名称"
+      label: "输入用于标识此客户端的名称（可选）"
+      placeholder: "例如：RubyOn-iPhone（如果为空则从分配的 IP 自动生成）"
+      note: "💡 如果为空则从分配的 IP 自动生成"
+    config_section:
+      title: "网络配置"
+      endpoint_label: "服务器端点"
+      endpoint_placeholder: "your-server.com:51820"
+      endpoint_note: "🌐 公网 IP 或域名:端口"
+      allowed_ips_label: "允许的 IP 范围"
+      allowed_ips_placeholder: "0.0.0.0/0 或 192.168.1.0/24"
+      allowed_ips_note: "🔒 客户端可访问的网络"
+      subnet_label: "客户端 IP 范围"
+      subnet_placeholder: "10.1.1.0"
+      subnet_note: "🏷️ 分配给客户端的 IP 范围"
+      keepalive_label: "Keep Alive（秒）"
+      keepalive_note: "⏰ 在 NAT 环境中维持连接的间隔"
+    create_button: "🚀 创建客户端"
+    cancel_button: "取消"
+    notice:
+      title: "重要信息"
+      mobile:
+        title: "📱 移动设置"
+        description: "使用 WireGuard 应用扫描生成的二维码。二维码只显示一次！"
+      pc:
+        title: "💻 PC 设置"
+        description: "下载配置文件并导入到 WireGuard 客户端。"
+      register:
+        title: "⚡ 即时注册"
+        description: "创建客户端后将自动在 MikroTik 路由器上注册对等端。"
+      manage:
+        title: "🔧 管理功能"
+        description: "创建后可以随时在客户端列表中管理和删除。"
+  
+  client_result:
+    title: "客户端创建完成！"
+    subtitle: "新的 WireGuard 客户端已成功创建"
+    client_info: "客户端信息"
+    client_name: "客户端名称"
+    assigned_ip: "分配 IP"
+    interface: "接口"
+    server: "服务器"
+    created_time: "创建时间"
+    config_file: "配置文件"
+    qr_code: "移动二维码"
+    download_section: "文件下载"
+    download_config: "下载配置文件"
+    download_qr: "保存二维码图像"
+    next_steps:
+      title: "设置完成 - 下一步"
+      mobile:
+        title: "📱 移动设置"
+        description: "安装 WireGuard 应用并扫描上面的二维码。"
+      pc:
+        title: "💻 PC 设置"
+        description: "安装 WireGuard 客户端并导入配置文件。"
+      test:
+        title: "🔗 连接测试"
+        description: "激活连接并验证 VPN 正常工作。"
+      manage:
+        title: "🔧 管理"
+        description: "如遇到问题，请在客户端列表中管理。"
+    actions:
+      create_another: "创建另一个客户端"
+      view_clients: "查看客户端列表"
+      back_dashboard: "返回仪表板"
+  
+  clients:
+    title: "客户端列表"
+    subtitle: "管理您注册的 WireGuard 客户端"
+    new_client: "创建新客户端"
+    registered_clients: "已注册客户端"
+    filter: "过滤器："
+    all_interfaces: "所有接口"
+    reset: "重置"
+    no_clients:
+      title: "没有客户端"
+      description: "创建您的第一个 WireGuard 客户端开始使用。"
+      action: "创建第一个客户端"
+    status:
+      active: "活跃"
+      waiting: "等待"
+    fields:
+      ip_address: "IP 地址"
+      public_key: "公钥"
+      keep_alive: "Keep Alive"
+      last_activity: "最后活动"
+      never_connected: "从未连接"
+      not_set: "未设置"
+      seconds: "秒"
+    delete_client: "删除客户端"
+    delete_confirm: "您确定要删除 \"%{name}\" 客户端吗？\n\n此操作无法撤销。"
+    stats:
+      total: "总共 %{count} 个客户端"
+      description: "管理活跃客户端"
+    refresh: "刷新"
+
+  flash:
+    login_success: "成功登录到 MikroTik。"
+    login_failed: "登录失败。请检查您的凭据。"
+    connection_failed: "连接失败: %{error}"
+    logout_success: "成功登出。"
+    login_required: "请先登录到 MikroTik。"
+    language_changed: "语言更改成功。"
+    required_fields: "请填写所有字段。"
+    mikrotik_connection_failed: "连接 MikroTik 失败。"
+    client_created: "客户端创建成功！"
+    client_deleted: "客户端删除成功。"
+    client_delete_failed: "删除客户端失败: %{error}"
+    no_wireguard_interfaces: "未找到 WireGuard 接口。请先在 MikroTik 中创建 WireGuard 接口。"
+    wireguard_interface_error: "检索 WireGuard 接口时发生错误。"
+    interface_required: "请选择 WireGuard 接口。"
+    config_fields_required: "请填写所有配置字段。"
+    server_public_key_error: "无法检索服务器公钥。请检查所选的 WireGuard 接口。"
+    peers_list_error: "无法检索对等端列表。"
+    peer_registration_failed: "对等端注册失败: %{error}"
+    client_creation_error: "创建客户端时发生错误: %{error}"
+  
+  languages:
+    ko: "한국어"
+    en: "English"
+    zh: "中文"
+    ja: "日本語"

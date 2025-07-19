@@ -1,31 +1,197 @@
-# Files in the config/locales directory are used for internationalization and
-# are automatically loaded by Rails. If you want to use locales other than
-# English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more about the API, please read the Rails Internationalization guide
-# at https://guides.rubyonrails.org/i18n.html.
-#
-# Be aware that YAML interprets the following case-insensitive strings as
-# booleans: `true`, `false`, `on`, `off`, `yes`, `no`. Therefore, these strings
-# must be quoted to be interpreted as strings. For example:
-#
-#     en:
-#       "yes": yup
-#       enabled: "ON"
-
 en:
-  hello: "Hello world"
+  app:
+    name: "WireGuard MikroTik Manager"
+    description: "VPN Client Management through MikroTik RouterOS"
+  
+  nav:
+    dashboard: "Dashboard"
+    login: "Login" 
+    logout: "Logout"
+    new_client: "New Client"
+    clients: "Client List"
+    language: "Language"
+  
+  dashboard:
+    title: "WireGuard Dashboard"
+    subtitle: "VPN Client Management through MikroTik RouterOS"
+    new_client_card:
+      title: "Create New Client"
+      description: "Create a WireGuard VPN client and get QR code"
+      action: "Get Started"
+      badge: "NEW"
+    clients_card:
+      title: "Client List"
+      description: "View and manage existing clients"
+      action: "Manage"
+      badge: "LIST"
+    connection:
+      title: "Connection Status"
+      status: "Connected"
+      host: "Host"
+      user: "User"
+      port: "Port"
+    guide:
+      title: "Quick Start Guide"
+      step1:
+        title: "Create Client"
+        description: "Click on Create New Client to create WireGuard configuration"
+      step2:
+        title: "Scan QR Code"
+        description: "Scan the generated QR code with WireGuard app or download the file"
+      step3:
+        title: "Manage Clients"
+        description: "View and manage existing clients from the client list"
+  
+  login:
+    title: "MikroTik Login"
+    subtitle: "Connect to WireGuard Management System"
+    host_label: "MikroTik Host"
+    host_placeholder: "192.168.1.1 or example.com"
+    port_label: "Port"
+    port_placeholder: "8728"
+    username_label: "Username"
+    username_placeholder: "admin"
+    password_label: "Password"
+    login_button: "Login"
+    connecting: "Connecting..."
+    ssl_label: "Use SSL"
+    remember_label: "Remember login info"
+    api_info: "MikroTik RouterOS API (Default port: 8728)"
+  
+  flash:
+    login_success: "Successfully logged in to MikroTik."
+    login_failed: "Login failed. Please check your credentials."
+    connection_failed: "Connection failed: %{error}"
+    logout_success: "Logged out successfully."
+    login_required: "Please log in to MikroTik first."
+    language_changed: "Language changed successfully."
+    required_fields: "Please fill in all fields."
+    mikrotik_connection_failed: "Failed to connect to MikroTik."
+    client_created: "New client created successfully!"
+    client_deleted: "Client deleted successfully."
+    client_delete_failed: "Failed to delete client: %{error}"
+    no_wireguard_interfaces: "No WireGuard interfaces found. Please create a WireGuard interface in MikroTik first."
+    wireguard_interface_error: "An error occurred while retrieving WireGuard interfaces."
+    interface_required: "Please select a WireGuard interface."
+    config_fields_required: "Please fill in all configuration fields."
+    server_public_key_error: "Unable to retrieve server public key. Please check the selected WireGuard interface."
+    peers_list_error: "Unable to retrieve peers list."
+    peer_registration_failed: "Failed to register peer: %{error}"
+    client_creation_error: "An error occurred while creating client: %{error}"
+
+  new_client:
+    title: "Create New Client"
+    subtitle: "Configure WireGuard VPN client and generate QR code"
+    steps:
+      interface: "Interface"
+      config: "Configuration"
+      qr: "QR Code"
+    interface_section:
+      title: "Select WireGuard Interface"
+      label: "Choose the interface to use"
+      info_title: "Interface Information"
+      public_key: "Public Key"
+      listen_port: "Listen Port"
+    name_section:
+      title: "Set Client Name"
+      label: "Enter a name to identify this client (optional)"
+      placeholder: "e.g., RubyOn-iPhone (auto-generated from assigned IP if empty)"
+      note: "💡 Will be auto-generated from assigned IP if left empty"
+    config_section:
+      title: "Network Configuration"
+      endpoint_label: "Server Endpoint"
+      endpoint_placeholder: "your-server.com:51820"
+      endpoint_note: "🌐 Public IP or domain:port"
+      allowed_ips_label: "Allowed IP Ranges"
+      allowed_ips_placeholder: "0.0.0.0/0 or 192.168.1.0/24"
+      allowed_ips_note: "🔒 Networks that client can access"
+      subnet_label: "Client IP Range"
+      subnet_placeholder: "10.1.1.0"
+      subnet_note: "🏷️ IP range to assign to clients"
+      keepalive_label: "Keep Alive (seconds)"
+      keepalive_note: "⏰ Interval for maintaining connection in NAT environments"
+    create_button: "🚀 Create Client"
+    cancel_button: "Cancel"
+    notice:
+      title: "Important Information"
+      mobile:
+        title: "📱 Mobile Setup"
+        description: "Scan the generated QR code with WireGuard app. Code is shown only once!"
+      pc:
+        title: "💻 PC Setup"
+        description: "Download configuration file and import into WireGuard client."
+      register:
+        title: "⚡ Instant Registration"
+        description: "Peer is automatically registered on MikroTik router upon client creation."
+      manage:
+        title: "🔧 Management Features"
+        description: "You can manage and delete clients anytime from the client list."
+  
+  client_result:
+    title: "Client Creation Complete!"
+    subtitle: "New WireGuard client has been successfully created"
+    client_info: "Client Information"
+    client_name: "Client Name"
+    assigned_ip: "Assigned IP"
+    interface: "Interface"
+    server: "Server"
+    created_time: "Created Time"
+    config_file: "Configuration File"
+    qr_code: "Mobile QR Code"
+    download_section: "File Downloads"
+    download_config: "Download Configuration File"
+    download_qr: "Save QR Code Image"
+    next_steps:
+      title: "Setup Complete - Next Steps"
+      mobile:
+        title: "📱 Mobile Setup"
+        description: "Install WireGuard app and scan the QR code above."
+      pc:
+        title: "💻 PC Setup"
+        description: "Install WireGuard client and import the configuration file."
+      test:
+        title: "🔗 Connection Test"
+        description: "Activate the connection and verify VPN is working properly."
+      manage:
+        title: "🔧 Management"
+        description: "Manage from client list if you encounter any issues."
+    actions:
+      create_another: "Create Another Client"
+      view_clients: "View Client List"
+      back_dashboard: "Back to Dashboard"
+  
+  clients:
+    title: "Client List"
+    subtitle: "Manage your registered WireGuard clients"
+    new_client: "Create New Client"
+    registered_clients: "Registered Clients"
+    filter: "Filter:"
+    all_interfaces: "All Interfaces"
+    reset: "Reset"
+    no_clients:
+      title: "No Clients"
+      description: "Create your first WireGuard client to get started."
+      action: "Create First Client"
+    status:
+      active: "Active"
+      waiting: "Waiting"
+    fields:
+      ip_address: "IP Address"
+      public_key: "Public Key"
+      keep_alive: "Keep Alive"
+      last_activity: "Last Activity"
+      never_connected: "Never Connected"
+      not_set: "Not Set"
+      seconds: "sec"
+    delete_client: "Delete Client"
+    delete_confirm: "Are you sure you want to delete \"%{name}\" client?\n\nThis action cannot be undone."
+    stats:
+      total: "Total %{count} clients"
+      description: "Manage active clients"
+    refresh: "Refresh"
+
+  languages:
+    ko: "한국어"
+    en: "English"
+    zh: "中文"
+    ja: "日本語"

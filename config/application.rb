@@ -27,5 +27,9 @@ module EasyWgMikrotik
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # I18n configuration
+    config.i18n.available_locales = [ :ko, :en, :zh, :ja ]
+    config.i18n.default_locale = :ko
   end
 end

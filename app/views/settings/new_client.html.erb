@@ -7,35 +7,58 @@
       </svg>
     </div>
     <h1 class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-2">
-      새 클라이언트 생성
+      <%= t('new_client.title') %>
     </h1>
-    <p class="text-gray-600 text-lg">WireGuard VPN 클라이언트를 설정하고 QR 코드를 생성하세요</p>
+    <p class="text-gray-600 text-lg"><%= t('new_client.subtitle') %></p>
   </div>
 
   <!-- 메인 폼 컨테이너 -->
   <div class="bg-white/80 backdrop-blur-lg rounded  border border-gray-300 overflow-hidden">
     <!-- 진행 단계 표시 -->
-    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 px-8 py-6 border-b border-gray-300">
-      <div class="flex items-center justify-between max-w-md mx-auto">
+    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 px-4 py-6 border-b border-gray-300">
+      <!-- 데스크톱용 가로 레이아웃 -->
+      <div class="hidden sm:flex items-center max-w-3xl mx-auto">
         <div class="flex items-center space-x-2">
+          <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
+            <span class="text-white text-sm font-bold">1</span>
+          </div>
+          <span class="text-sm font-medium text-blue-600 whitespace-nowrap"><%= t('new_client.steps.interface') %></span>
+        </div>
+        <div class="flex-1 mx-4 h-0.5 bg-blue-200 min-w-16"></div>
+        <div class="flex items-center space-x-2">
+          <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
+            <span class="text-white text-sm font-bold">2</span>
+          </div>
+          <span class="text-sm font-medium text-blue-600 whitespace-nowrap"><%= t('new_client.steps.config') %></span>
+        </div>
+        <div class="flex-1 mx-4 h-0.5 bg-blue-200 min-w-16"></div>
+        <div class="flex items-center space-x-2">
+          <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center flex-shrink-0">
+            <span class="text-white text-sm font-bold">3</span>
+          </div>
+          <span class="text-sm font-medium text-gray-500 whitespace-nowrap"><%= t('new_client.steps.qr') %></span>
+        </div>
+      </div>
+
+      <!-- 모바일용 세로 레이아웃 -->
+      <div class="sm:hidden space-y-3">
+        <div class="flex items-center space-x-3">
           <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
             <span class="text-white text-sm font-bold">1</span>
           </div>
-          <span class="text-sm font-medium text-blue-600">인터페이스 선택</span>
+          <span class="text-sm font-medium text-blue-600"><%= t('new_client.steps.interface') %></span>
         </div>
-        <div class="w-12 h-0.5 bg-blue-200"></div>
-        <div class="flex items-center space-x-2">
+        <div class="flex items-center space-x-3">
           <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
             <span class="text-white text-sm font-bold">2</span>
           </div>
-          <span class="text-sm font-medium text-blue-600">설정 구성</span>
+          <span class="text-sm font-medium text-blue-600"><%= t('new_client.steps.config') %></span>
         </div>
-        <div class="w-12 h-0.5 bg-blue-200"></div>
-        <div class="flex items-center space-x-2">
+        <div class="flex items-center space-x-3">
           <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
             <span class="text-white text-sm font-bold">3</span>
           </div>
-          <span class="text-sm font-medium text-gray-500">QR 코드 생성</span>
+          <span class="text-sm font-medium text-gray-500"><%= t('new_client.steps.qr') %></span>
         </div>
       </div>
     </div>
@@ -50,12 +73,12 @@
             <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
               <span class="text-white text-sm font-bold">1</span>
             </div>
-            <h3 class="text-lg font-bold text-blue-900">WireGuard 인터페이스 선택</h3>
+            <h3 class="text-lg font-bold text-blue-900"><%= t('new_client.interface_section.title') %></h3>
           </div>
 
           <div class="space-y-4">
             <div>
-              <label class="block text-sm font-semibold text-blue-800 mb-3">사용할 인터페이스를 선택하세요</label>
+              <label class="block text-sm font-semibold text-blue-800 mb-3"><%= t('new_client.interface_section.label') %></label>
               <select name="interface_name"
                       required
                       class="w-full px-4 py-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white transition-all duration-200 text-gray-900 font-medium"
@@ -76,15 +99,15 @@
                   <svg class="w-4 h-4" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                   </svg>
-                  <span>인터페이스 정보</span>
+                  <span><%= t('new_client.interface_section.info_title') %></span>
                 </h4>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                   <div class="bg-blue-50 rounded p-3">
-                    <div class="font-semibold text-blue-700 mb-1">공개키</div>
+                    <div class="font-semibold text-blue-700 mb-1"><%= t('new_client.interface_section.public_key') %></div>
                     <div data-new-client-target="interfacePublicKey" class="font-mono text-blue-600 break-all"></div>
                   </div>
                   <div class="bg-blue-50 rounded p-3">
-                    <div class="font-semibold text-blue-700 mb-1">Listen Port</div>
+                    <div class="font-semibold text-blue-700 mb-1"><%= t('new_client.interface_section.listen_port') %></div>
                     <div data-new-client-target="interfaceListenPort" class="font-mono text-blue-600"></div>
                   </div>
                 </div>
@@ -101,15 +124,15 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
               </svg>
             </div>
-            <h3 class="text-lg font-bold text-green-900">클라이언트 이름 설정</h3>
+            <h3 class="text-lg font-bold text-green-900"><%= t('new_client.name_section.title') %></h3>
           </div>
 
           <div>
-            <label class="block text-sm font-semibold text-green-800 mb-3">클라이언트를 식별할 이름을 입력하세요 (선택사항)</label>
+            <label class="block text-sm font-semibold text-green-800 mb-3"><%= t('new_client.name_section.label') %></label>
             <%= f.text_field :client_name,
-                  placeholder: "예: RubyOn-iPhone (비워두면 할당받은 IP로 자동 생성)",
+                  placeholder: t('new_client.name_section.placeholder'),
                   class: "w-full px-4 py-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 bg-white transition-all duration-200 placeholder-gray-400" %>
-            <p class="mt-2 text-sm text-green-700">💡 비워두면 할당받은 아이피로 자동 생성됩니다</p>
+            <p class="mt-2 text-sm text-green-700"><%= t('new_client.name_section.note') %></p>
           </div>
         </div>
 
@@ -119,7 +142,7 @@
             <div class="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center">
               <span class="text-white text-sm font-bold">2</span>
             </div>
-            <h3 class="text-lg font-bold text-purple-900">네트워크 설정 구성</h3>
+            <h3 class="text-lg font-bold text-purple-900"><%= t('new_client.config_section.title') %></h3>
           </div>
 
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -127,15 +150,15 @@
             <div class="space-y-3">
               <label class="flex items-center space-x-2 text-sm font-semibold text-purple-800">
                 <svg class="w-4 h-4" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 712-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2"></path>
                 </svg>
-                <span>서버 엔드포인트</span>
+                <span><%= t('new_client.config_section.endpoint_label') %></span>
               </label>
               <%= f.text_field :endpoint,
-                    placeholder: "your-server.com:51820",
+                    placeholder: t('new_client.config_section.endpoint_placeholder'),
                     class: "w-full px-4 py-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 bg-white transition-all duration-200 font-mono",
                     required: true %>
-              <p class="text-xs text-purple-600 bg-purple-50 px-3 py-1 rounded">🌐 공인 IP 또는 도메인:포트</p>
+              <p class="text-xs text-purple-600 bg-purple-50 px-3 py-1 rounded"><%= t('new_client.config_section.endpoint_note') %></p>
             </div>
 
             <!-- 허용된 IP 대역 -->
@@ -144,13 +167,13 @@
                 <svg class="w-4 h-4" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"></path>
                 </svg>
-                <span>허용된 IP 대역</span>
+                <span><%= t('new_client.config_section.allowed_ips_label') %></span>
               </label>
               <%= f.text_field :allowed_ips,
-                    placeholder: "0.0.0.0/0 또는 192.168.1.0/24",
+                    placeholder: t('new_client.config_section.allowed_ips_placeholder'),
                     class: "w-full px-4 py-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 bg-white transition-all duration-200 font-mono",
                     required: true %>
-              <p class="text-xs text-purple-600 bg-purple-50 px-3 py-1 rounded">🔒 클라이언트가 접근할 수 있는 네트워크</p>
+              <p class="text-xs text-purple-600 bg-purple-50 px-3 py-1 rounded"><%= t('new_client.config_section.allowed_ips_note') %></p>
             </div>
 
             <!-- 클라이언트 IP 대역 -->
@@ -159,13 +182,13 @@
                 <svg class="w-4 h-4" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
                 </svg>
-                <span>클라이언트 IP 대역</span>
+                <span><%= t('new_client.config_section.subnet_label') %></span>
               </label>
               <%= f.text_field :subnet_prefix,
-                    placeholder: "10.1.1.0",
+                    placeholder: t('new_client.config_section.subnet_placeholder'),
                     class: "w-full px-4 py-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 bg-white transition-all duration-200 font-mono",
                     required: true %>
-              <p class="text-xs text-purple-600 bg-purple-50 px-3 py-1 rounded">🏷️ 클라이언트에게 할당할 IP 범위</p>
+              <p class="text-xs text-purple-600 bg-purple-50 px-3 py-1 rounded"><%= t('new_client.config_section.subnet_note') %></p>
             </div>
 
             <!-- Keep Alive -->
@@ -174,7 +197,7 @@
                 <svg class="w-4 h-4" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
-                <span>Keep Alive (초)</span>
+                <span><%= t('new_client.config_section.keepalive_label') %></span>
               </label>
               <%= f.number_field :persistent_keepalive,
                     value: 25,
@@ -183,16 +206,16 @@
                     placeholder: "25",
                     class: "w-full px-4 py-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 bg-white transition-all duration-200 font-mono",
                     required: true %>
-              <p class="text-xs text-purple-600 bg-purple-50 px-3 py-1 rounded">⏰ NAT 환경에서 연결 유지를 위한 주기</p>
+              <p class="text-xs text-purple-600 bg-purple-50 px-3 py-1 rounded"><%= t('new_client.config_section.keepalive_note') %></p>
             </div>
           </div>
         </div>
 
         <!-- 생성 버튼 -->
         <div class="flex flex-col sm:flex-row gap-4">
-          <%= f.submit "🚀 클라이언트 생성하기",
+          <%= f.submit t('new_client.create_button'),
                        class: "flex-1 group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold rounded-md focus:outline-none focus:ring-4 focus:ring-blue-500/50 transition-all duration-200   text-lg" %>
-          <%= link_to "취소", root_path,
+          <%= link_to t('new_client.cancel_button'), root_path,
                       class: "flex-1 px-8 py-4 bg-gray-500 hover:bg-gray-600 text-white font-semibold rounded-md text-center transition-all duration-200   text-lg" %>
         </div>
       <% end %>
@@ -207,40 +230,40 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.464 0L4.35 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
         </svg>
       </div>
-      <h3 class="text-xl font-bold text-amber-900">중요한 안내사항</h3>
+      <h3 class="text-xl font-bold text-amber-900"><%= t('new_client.notice.title') %></h3>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div class="bg-white/60 backdrop-blur-sm rounded p-4 border border-gray-300">
         <div class="flex items-center space-x-2 mb-2">
           <span class="text-2xl">📱</span>
-          <h4 class="font-bold text-amber-800">모바일 설정</h4>
+          <h4 class="font-bold text-amber-800"><%= t('new_client.notice.mobile.title') %></h4>
         </div>
-        <p class="text-sm text-amber-700">생성된 QR 코드를 WireGuard 앱으로 스캔하세요. 코드는 한 번만 표시됩니다!</p>
+        <p class="text-sm text-amber-700"><%= t('new_client.notice.mobile.description') %></p>
       </div>
 
       <div class="bg-white/60 backdrop-blur-sm rounded p-4 border border-gray-300">
         <div class="flex items-center space-x-2 mb-2">
           <span class="text-2xl">💻</span>
-          <h4 class="font-bold text-amber-800">PC 설정</h4>
+          <h4 class="font-bold text-amber-800"><%= t('new_client.notice.pc.title') %></h4>
         </div>
-        <p class="text-sm text-amber-700">설정 파일을 다운로드하여 WireGuard 클라이언트에서 import하세요.</p>
+        <p class="text-sm text-amber-700"><%= t('new_client.notice.pc.description') %></p>
       </div>
 
       <div class="bg-white/60 backdrop-blur-sm rounded p-4 border border-gray-300">
         <div class="flex items-center space-x-2 mb-2">
           <span class="text-2xl">⚡</span>
-          <h4 class="font-bold text-amber-800">즉시 등록</h4>
+          <h4 class="font-bold text-amber-800"><%= t('new_client.notice.register.title') %></h4>
         </div>
-        <p class="text-sm text-amber-700">클라이언트 생성과 동시에 MikroTik 라우터에 피어가 등록됩니다.</p>
+        <p class="text-sm text-amber-700"><%= t('new_client.notice.register.description') %></p>
       </div>
 
       <div class="bg-white/60 backdrop-blur-sm rounded p-4 border border-gray-300">
         <div class="flex items-center space-x-2 mb-2">
           <span class="text-2xl">🔧</span>
-          <h4 class="font-bold text-amber-800">관리 기능</h4>
+          <h4 class="font-bold text-amber-800"><%= t('new_client.notice.manage.title') %></h4>
         </div>
-        <p class="text-sm text-amber-700">생성 후 클라이언트 목록에서 언제든 관리하고 삭제할 수 있습니다.</p>
+        <p class="text-sm text-amber-700"><%= t('new_client.notice.manage.description') %></p>
       </div>
     </div>
   </div>

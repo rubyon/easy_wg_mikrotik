@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Easy Wg Mikrotik" %></title>
+    <title><%= content_for(:title) || t('app.name') %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -33,12 +33,33 @@
               </svg>
             </div>
             <h1 class="wg-logo-text">
-              <%= link_to "WireGuard MikroTik 관리", root_path, class: "transition-all duration-300" %>
+              <%= link_to t('app.name'), root_path, class: "transition-all duration-300" %>
             </h1>
           </div>
 
-          <% if session[:mikrotik_host].present? %>
-            <div class="flex items-center space-x-4">
+          <div class="flex items-center space-x-4">
+            <!-- 언어 선택기 -->
+            <div class="relative" data-controller="dropdown">
+              <button data-action="click->dropdown#toggle" class="flex items-center space-x-2 px-3 py-2 text-sm text-white hover:bg-white/10 rounded-md transition-colors">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
+                </svg>
+                <span><%= t("languages.#{I18n.locale}") %></span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              <div data-dropdown-target="menu" class="hidden absolute right-0 mt-2 w-32 bg-white rounded-md border border-gray-300 z-50">
+                <% I18n.available_locales.each do |locale| %>
+                  <%= link_to set_locale_path(locale),
+                        class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 #{'bg-blue-50 text-blue-600' if I18n.locale == locale}" do %>
+                    <%= t("languages.#{locale}") %>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+
+            <% if session[:mikrotik_host].present? %>
               <div class="wg-user-info">
                 <div class="wg-status-indicator"></div>
                 <span class="text-sm font-medium text-wg-gray">
@@ -47,16 +68,16 @@
               </div>
               <%= link_to logout_path,
                     class: "wg-btn-danger text-sm px-4 py-2",
-                    data: { turbo_method: :delete, confirm: "정말 로그아웃하시겠습니까?" } do %>
+                    data: { turbo_method: :delete, confirm: t('nav.logout') + "?" } do %>
                 <span class="flex items-center space-x-2">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
                   </svg>
-                  <span>로그아웃</span>
+                  <span><%= t('nav.logout') %></span>
                 </span>
               <% end %>
-            </div>
-          <% end %>
+            <% end %>
+          </div>
         </div>
       </div>
     </header>

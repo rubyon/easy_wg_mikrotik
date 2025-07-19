@@ -7,6 +7,9 @@ import { application } from "./application"
 import ClientResultController from "./client_result_controller"
 application.register("client-result", ClientResultController)
 
+import DropdownController from "./dropdown_controller"
+application.register("dropdown", DropdownController)
+
 import FlashController from "./flash_controller"
 application.register("flash", FlashController)
 

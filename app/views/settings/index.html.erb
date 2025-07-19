@@ -1,7 +1,7 @@
 <!-- 대시보드 헤더 -->
 <div class="wg-dashboard-header">
-  <h1 class="wg-dashboard-title">WireGuard 대시보드</h1>
-  <p class="wg-dashboard-subtitle">MikroTik RouterOS를 통한 VPN 클라이언트 관리</p>
+  <h1 class="wg-dashboard-title"><%= t('dashboard.title') %></h1>
+  <p class="wg-dashboard-subtitle"><%= t('dashboard.subtitle') %></p>
 </div>
 
 <!-- 주요 액션 카드들 -->
@@ -16,13 +16,13 @@
           </svg>
         </div>
         <div class="text-right opacity-80">
-          <div class="text-2xl font-bold">NEW</div>
+          <div class="text-2xl font-bold"><%= t('dashboard.new_client_card.badge') %></div>
         </div>
       </div>
-      <h3 class="text-xl font-bold mb-2">새 클라이언트 생성</h3>
-      <p class="text-blue-100 text-sm">WireGuard VPN 클라이언트를 생성하고 QR 코드를 받으세요</p>
+      <h3 class="text-xl font-bold mb-2"><%= t('dashboard.new_client_card.title') %></h3>
+      <p class="text-blue-100 text-sm"><%= t('dashboard.new_client_card.description') %></p>
       <div class="mt-4 flex items-center text-sm opacity-80">
-        <span>시작하기</span>
+        <span><%= t('dashboard.new_client_card.action') %></span>
         <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
         </svg>
@@ -40,13 +40,13 @@
           </svg>
         </div>
         <div class="text-right opacity-80">
-          <div class="text-2xl font-bold">LIST</div>
+          <div class="text-2xl font-bold"><%= t('dashboard.clients_card.badge') %></div>
         </div>
       </div>
-      <h3 class="text-xl font-bold mb-2">클라이언트 목록</h3>
-      <p class="text-purple-100 text-sm">기존 클라이언트를 조회하고 관리하세요</p>
+      <h3 class="text-xl font-bold mb-2"><%= t('dashboard.clients_card.title') %></h3>
+      <p class="text-purple-100 text-sm"><%= t('dashboard.clients_card.description') %></p>
       <div class="mt-4 flex items-center text-sm opacity-80">
-        <span>관리하기</span>
+        <span><%= t('dashboard.clients_card.action') %></span>
         <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
         </svg>
@@ -64,11 +64,11 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16l2.879-2.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242zM21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
         </svg>
       </div>
-      <span>연결 상태</span>
+      <span><%= t('dashboard.connection.title') %></span>
     </h3>
     <div class="wg-connection-status">
       <div class="w-3 h-3 bg-wg-success rounded-full animate-pulse"></div>
-      <span class="text-sm font-medium text-wg-success">연결됨</span>
+      <span class="text-sm font-medium text-wg-success"><%= t('dashboard.connection.status') %></span>
     </div>
   </div>
 
@@ -78,7 +78,7 @@
         <svg class="w-5 h-5 text-wg-gray" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2"></path>
         </svg>
-        <span class="text-sm font-medium text-wg-gray">호스트</span>
+        <span class="text-sm font-medium text-wg-gray"><%= t('dashboard.connection.host') %></span>
       </div>
       <div class="wg-connection-item-value"><%= @mikrotik_host %></div>
     </div>
@@ -88,7 +88,7 @@
         <svg class="w-5 h-5 text-wg-gray" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
         </svg>
-        <span class="text-sm font-medium text-wg-gray">사용자</span>
+        <span class="text-sm font-medium text-wg-gray"><%= t('dashboard.connection.user') %></span>
       </div>
       <div class="wg-connection-item-value"><%= @mikrotik_user %></div>
     </div>
@@ -98,7 +98,7 @@
         <svg class="w-5 h-5 text-wg-gray" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
         </svg>
-        <span class="text-sm font-medium text-wg-gray">포트</span>
+        <span class="text-sm font-medium text-wg-gray"><%= t('dashboard.connection.port') %></span>
       </div>
       <div class="wg-connection-item-value"><%= session[:mikrotik_port] %></div>
     </div>
@@ -113,26 +113,26 @@
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
       </svg>
     </div>
-    <h3 class="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-blue-600 bg-clip-text text-transparent">빠른 시작 가이드</h3>
+    <h3 class="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-blue-600 bg-clip-text text-transparent"><%= t('dashboard.guide.title') %></h3>
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
     <div class="bg-white/50 backdrop-blur-sm rounded-md p-6 border border-white/30">
       <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-lg flex items-center justify-center text-white font-bold text-sm mb-4">1</div>
-      <h4 class="font-bold text-gray-900 mb-2">클라이언트 생성</h4>
-      <p class="text-sm text-gray-600">새 클라이언트 생성을 클릭하여 WireGuard 설정을 만드세요</p>
+      <h4 class="font-bold text-gray-900 mb-2"><%= t('dashboard.guide.step1.title') %></h4>
+      <p class="text-sm text-gray-600"><%= t('dashboard.guide.step1.description') %></p>
     </div>
 
     <div class="bg-white/50 backdrop-blur-sm rounded-md p-6 border border-white/30">
       <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-lg flex items-center justify-center text-white font-bold text-sm mb-4">2</div>
-      <h4 class="font-bold text-gray-900 mb-2">QR 코드 스캔</h4>
-      <p class="text-sm text-gray-600">생성된 QR 코드를 WireGuard 앱으로 스캔하거나 파일을 다운로드하세요</p>
+      <h4 class="font-bold text-gray-900 mb-2"><%= t('dashboard.guide.step2.title') %></h4>
+      <p class="text-sm text-gray-600"><%= t('dashboard.guide.step2.description') %></p>
     </div>
 
     <div class="bg-white/50 backdrop-blur-sm rounded-md p-6 border border-white/30">
       <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-lg flex items-center justify-center text-white font-bold text-sm mb-4">3</div>
-      <h4 class="font-bold text-gray-900 mb-2">클라이언트 관리</h4>
-      <p class="text-sm text-gray-600">클라이언트 목록에서 기존 클라이언트를 조회하고 관리하세요</p>
+      <h4 class="font-bold text-gray-900 mb-2"><%= t('dashboard.guide.step3.title') %></h4>
+      <p class="text-sm text-gray-600"><%= t('dashboard.guide.step3.description') %></p>
     </div>
   </div>
 </div>

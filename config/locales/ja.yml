@@ -1,0 +1,197 @@
+ja:
+  app:
+    name: "WireGuard MikroTik マネージャー"
+    description: "MikroTik RouterOS を通じた VPN クライアント管理"
+  
+  nav:
+    dashboard: "ダッシュボード"
+    login: "ログイン"
+    logout: "ログアウト"
+    new_client: "新しいクライアント"
+    clients: "クライアント一覧"
+    language: "言語"
+  
+  dashboard:
+    title: "WireGuard ダッシュボード"
+    subtitle: "MikroTik RouterOS を通じた VPN クライアント管理"
+    new_client_card:
+      title: "新しいクライアントの作成"
+      description: "WireGuard VPN クライアントを作成し、QR コードを取得"
+      action: "開始"
+      badge: "新規"
+    clients_card:
+      title: "クライアント一覧"
+      description: "既存のクライアントを表示・管理"
+      action: "管理"
+      badge: "一覧"
+    connection:
+      title: "接続状態"
+      status: "接続済み"
+      host: "ホスト"
+      user: "ユーザー"
+      port: "ポート"
+    guide:
+      title: "クイックスタートガイド"
+      step1:
+        title: "クライアント作成"
+        description: "新しいクライアント作成をクリックして WireGuard 設定を作成"
+      step2:
+        title: "QRコードスキャン"
+        description: "生成されたQRコードをWireGuardアプリでスキャンまたはファイルをダウンロード"
+      step3:
+        title: "クライアント管理"
+        description: "クライアント一覧から既存のクライアントを表示・管理"
+  
+  login:
+    title: "MikroTik ログイン"
+    subtitle: "WireGuard 管理システムに接続"
+    host_label: "MikroTik ホスト"
+    host_placeholder: "192.168.1.1 または example.com"
+    port_label: "ポート"
+    port_placeholder: "8728"
+    username_label: "ユーザー名"
+    username_placeholder: "admin"
+    password_label: "パスワード"
+    login_button: "ログイン"
+    connecting: "接続中..."
+    ssl_label: "SSL を使用"
+    remember_label: "ログイン情報を保存"
+    api_info: "MikroTik RouterOS API (デフォルトポート: 8728)"
+
+  new_client:
+    title: "新しいクライアントの作成"
+    subtitle: "WireGuard VPN クライアントを設定し、QRコードを生成"
+    steps:
+      interface: "接続設定"
+      config: "詳細設定"
+      qr: "QR生成"
+    interface_section:
+      title: "WireGuard インターフェースを選択"
+      label: "使用するインターフェースを選択してください"
+      info_title: "インターフェース情報"
+      public_key: "公開鍵"
+      listen_port: "リスンポート"
+    name_section:
+      title: "クライアント名を設定"
+      label: "このクライアントを識別する名前を入力（オプション）"
+      placeholder: "例：RubyOn-iPhone（空の場合は割り当てられたIPから自動生成）"
+      note: "💡 空の場合は割り当てられたIPから自動生成されます"
+    config_section:
+      title: "ネットワーク設定"
+      endpoint_label: "サーバーエンドポイント"
+      endpoint_placeholder: "your-server.com:51820"
+      endpoint_note: "🌐 パブリックIPまたはドメイン:ポート"
+      allowed_ips_label: "許可されたIP範囲"
+      allowed_ips_placeholder: "0.0.0.0/0 または 192.168.1.0/24"
+      allowed_ips_note: "🔒 クライアントがアクセスできるネットワーク"
+      subnet_label: "クライアントIP範囲"
+      subnet_placeholder: "10.1.1.0"
+      subnet_note: "🏷️ クライアントに割り当てるIP範囲"
+      keepalive_label: "Keep Alive（秒）"
+      keepalive_note: "⏰ NAT環境での接続維持の間隔"
+    create_button: "🚀 クライアント作成"
+    cancel_button: "キャンセル"
+    notice:
+      title: "重要な情報"
+      mobile:
+        title: "📱 モバイル設定"
+        description: "生成されたQRコードをWireGuardアプリでスキャンしてください。コードは一度だけ表示されます！"
+      pc:
+        title: "💻 PC設定"
+        description: "設定ファイルをダウンロードし、WireGuardクライアントでインポートしてください。"
+      register:
+        title: "⚡ 即座登録"
+        description: "クライアント作成と同時にMikroTikルーターにピアが登録されます。"
+      manage:
+        title: "🔧 管理機能"
+        description: "作成後はクライアント一覧からいつでも管理や削除が可能です。"
+  
+  client_result:
+    title: "クライアント作成完了！"
+    subtitle: "新しいWireGuardクライアントが正常に作成されました"
+    client_info: "クライアント情報"
+    client_name: "クライアント名"
+    assigned_ip: "割り当てIP"
+    interface: "インターフェース"
+    server: "サーバー"
+    created_time: "作成時間"
+    config_file: "設定ファイル"
+    qr_code: "モバイルQRコード"
+    download_section: "ファイルダウンロード"
+    download_config: "設定ファイルをダウンロード"
+    download_qr: "QRコード画像を保存"
+    next_steps:
+      title: "設定完了 - 次のステップ"
+      mobile:
+        title: "📱 モバイル設定"
+        description: "WireGuardアプリをインストールし、上記のQRコードをスキャンしてください。"
+      pc:
+        title: "💻 PC設定"
+        description: "WireGuardクライアントをインストールし、設定ファイルをインポートしてください。"
+      test:
+        title: "🔗 接続テスト"
+        description: "接続をアクティベートし、VPNが正常に動作することを確認してください。"
+      manage:
+        title: "🔧 管理"
+        description: "問題があればクライアント一覧から管理してください。"
+    actions:
+      create_another: "別のクライアントを作成"
+      view_clients: "クライアント一覧を表示"
+      back_dashboard: "ダッシュボードに戻る"
+  
+  clients:
+    title: "クライアント一覧"
+    subtitle: "登録されたWireGuardクライアントを管理"
+    new_client: "新しいクライアントを作成"
+    registered_clients: "登録済みクライアント"
+    filter: "フィルター："
+    all_interfaces: "すべてのインターフェース"
+    reset: "リセット"
+    no_clients:
+      title: "クライアントがありません"
+      description: "最初のWireGuardクライアントを作成して始めましょう。"
+      action: "最初のクライアントを作成"
+    status:
+      active: "アクティブ"
+      waiting: "待機中"
+    fields:
+      ip_address: "IPアドレス"
+      public_key: "公開鍵"
+      keep_alive: "Keep Alive"
+      last_activity: "最終アクティビティ"
+      never_connected: "接続したことがありません"
+      not_set: "設定されていません"
+      seconds: "秒"
+    delete_client: "クライアントを削除"
+    delete_confirm: "\"%{name}\"クライアントを削除してもよろしいですか？\n\nこの操作は元に戻せません。"
+    stats:
+      total: "合計%{count}個のクライアント"
+      description: "アクティブなクライアントを管理"
+    refresh: "更新"
+
+  flash:
+    login_success: "MikroTik への ログインに成功しました。"
+    login_failed: "ログインに失敗しました。認証情報を確認してください。"
+    connection_failed: "接続に失敗しました: %{error}"
+    logout_success: "ログアウトしました。"
+    login_required: "まず MikroTik にログインしてください。"
+    language_changed: "言語が正常に変更されました。"
+    required_fields: "すべてのフィールドを入力してください。"
+    mikrotik_connection_failed: "MikroTikへの接続に失敗しました。"
+    client_created: "クライアントが正常に作成されました！"
+    client_deleted: "クライアントが正常に削除されました。"
+    client_delete_failed: "クライアントの削除に失敗しました: %{error}"
+    no_wireguard_interfaces: "WireGuard インターフェースが見つかりません。まず MikroTik で WireGuard インターフェースを作成してください。"
+    wireguard_interface_error: "WireGuard インターフェースの取得中にエラーが発生しました。"
+    interface_required: "WireGuard インターフェースを選択してください。"
+    config_fields_required: "すべての設定フィールドを入力してください。"
+    server_public_key_error: "サーバー公開鍵を取得できません。選択した WireGuard インターフェースを確認してください。"
+    peers_list_error: "ピア一覧を取得できません。"
+    peer_registration_failed: "ピア登録に失敗しました: %{error}"
+    client_creation_error: "クライアント作成中にエラーが発生しました: %{error}"
+  
+  languages:
+    ko: "한국어"
+    en: "English"
+    zh: "中文"
+    ja: "日本語"
