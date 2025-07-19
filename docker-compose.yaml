@@ -1,0 +1,15 @@
+services:
+  easy_wg_mikrotik:
+    restart: unless-stopped
+    image: easy_wg_mikrotik
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: easy_wg_mikrotik
+    ports:
+      - "3000:3000"
+    environment:
+      RAILS_ENV: development
+      TZ: "Asia/Seoul"
+    volumes:
+      - ./.env:/rails/.env

@@ -21,6 +21,23 @@ A simple and intuitive web interface for managing WireGuard VPN clients on Mikro
 
 ## Installation
 
+### Option 1: Docker Compose (Recommended)
+
+1. Clone the repository:
+```bash
+git clone https://github.com/rubyon/easy_wg_mikrotik.git
+cd easy_wg_mikrotik
+```
+
+2. Run with Docker Compose:
+```bash
+docker compose up --build
+```
+
+3. Open your browser and navigate to `http://localhost:3000`
+
+### Option 2: Local Development
+
 1. Clone the repository:
 ```bash
 git clone https://github.com/rubyon/easy_wg_mikrotik.git
@@ -32,9 +49,9 @@ cd easy_wg_mikrotik
 bundle install
 ```
 
-3. Start the Rails server:
+3. Start the development server:
 ```bash
-rails server
+./bin/dev
 ```
 
 4. Open your browser and navigate to `http://localhost:3000`
@@ -120,6 +137,23 @@ MikroTik 라우터에서 WireGuard VPN 클라이언트를 관리할 수 있는 �
 
 ## 설치 방법
 
+### 방법 1: Docker Compose (권장)
+
+1. 저장소 클론:
+```bash
+git clone https://github.com/rubyon/easy_wg_mikrotik.git
+cd easy_wg_mikrotik
+```
+
+2. Docker Compose로 실행:
+```bash
+docker compose up --build
+```
+
+3. 브라우저에서 `http://localhost:3000` 접속
+
+### 방법 2: 로컬 개발 환경
+
 1. 저장소 클론:
 ```bash
 git clone https://github.com/rubyon/easy_wg_mikrotik.git
@@ -131,9 +165,9 @@ cd easy_wg_mikrotik
 bundle install
 ```
 
-3. Rails 서버 시작:
+3. 개발 서버 시작:
 ```bash
-rails server
+./bin/dev
 ```
 
 4. 브라우저에서 `http://localhost:3000` 접속
