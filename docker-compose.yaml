@@ -10,6 +10,7 @@ services:
       - "3000:3000"
     environment:
       RAILS_ENV: development
+      SERVER_ADDRESS: 192.168.88.1
       TZ: "Asia/Seoul"
     volumes:
       - ./.env:/rails/.env
