@@ -226,8 +226,9 @@
   <div class="mt-8 bg-gradient-to-r from-amber-50 to-yellow-50 rounded border border-gray-300 p-6">
     <div class="flex items-center space-x-3 mb-4">
       <div class="w-10 h-10 bg-amber-500 rounded-md flex items-center justify-center">
-        <svg class="w-5 h-5 text-white" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.464 0L4.35 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+        <svg class="w-5 h-5" stroke="white" fill="none" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.464 0L4.35 16.5c-.77.833.192 2.5 1.732 2.5z" />
         </svg>
       </div>
       <h3 class="text-xl font-bold text-amber-900"><%= t('new_client.notice.title') %></h3>
@@ -236,7 +237,6 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div class="bg-white/60 backdrop-blur-sm rounded p-4 border border-gray-300">
         <div class="flex items-center space-x-2 mb-2">
-          <span class="text-2xl">📱</span>
           <h4 class="font-bold text-amber-800"><%= t('new_client.notice.mobile.title') %></h4>
         </div>
         <p class="text-sm text-amber-700"><%= t('new_client.notice.mobile.description') %></p>
@@ -244,7 +244,6 @@
 
       <div class="bg-white/60 backdrop-blur-sm rounded p-4 border border-gray-300">
         <div class="flex items-center space-x-2 mb-2">
-          <span class="text-2xl">💻</span>
           <h4 class="font-bold text-amber-800"><%= t('new_client.notice.pc.title') %></h4>
         </div>
         <p class="text-sm text-amber-700"><%= t('new_client.notice.pc.description') %></p>
@@ -252,7 +251,6 @@
 
       <div class="bg-white/60 backdrop-blur-sm rounded p-4 border border-gray-300">
         <div class="flex items-center space-x-2 mb-2">
-          <span class="text-2xl">⚡</span>
           <h4 class="font-bold text-amber-800"><%= t('new_client.notice.register.title') %></h4>
         </div>
         <p class="text-sm text-amber-700"><%= t('new_client.notice.register.description') %></p>
@@ -260,7 +258,6 @@
 
       <div class="bg-white/60 backdrop-blur-sm rounded p-4 border border-gray-300">
         <div class="flex items-center space-x-2 mb-2">
-          <span class="text-2xl">🔧</span>
           <h4 class="font-bold text-amber-800"><%= t('new_client.notice.manage.title') %></h4>
         </div>
         <p class="text-sm text-amber-700"><%= t('new_client.notice.manage.description') %></p>
