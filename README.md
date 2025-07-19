@@ -46,7 +46,8 @@ cd easy_wg_mikrotik
 
 2. Install dependencies:
 ```bash
-bundle install
+bundle
+yarn
 ```
 
 3. Start the development server:
@@ -162,7 +163,8 @@ cd easy_wg_mikrotik
 
 2. 의존성 설치:
 ```bash
-bundle install
+bundle
+yarn
 ```
 
 3. 개발 서버 시작:
