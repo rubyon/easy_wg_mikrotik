@@ -348,6 +348,6 @@ class ClientsController < ApplicationController
       shape_rendering: "crispEdges", # 선명한 모서리
       module_size:     6,          # 모듈 크기 (픽셀)
       standalone:      true        # 독립 실행 가능한 SVG
-    )
+    ).html_safe
   end
 end
