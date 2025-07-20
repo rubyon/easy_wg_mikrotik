@@ -140,7 +140,7 @@
                     <span class="text-sm font-medium text-gray-600"><%= t('clients.fields.keep_alive') %></span>
                   </div>
                   <span class="text-sm font-semibold text-gray-900">
-                    <%= peer[:'persistent-keepalive'].gsub("s", "") || t('clients.fields.not_set') %>
+                    <%= peer[:'persistent-keepalive']&.gsub("s", "") || t('clients.fields.not_set') %>
                     <% if peer[:'persistent-keepalive'].present? %><%= t('clients.fields.seconds') %><% end %>
                   </span>
                 </div>
