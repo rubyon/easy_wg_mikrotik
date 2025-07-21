@@ -30,6 +30,6 @@ module EasyWgMikrotik
 
     # I18n configuration
     config.i18n.available_locales = [ :ko, :en, :zh, :ja ]
-    config.i18n.default_locale = ENV.fetch('DEFAULT_LOCALE', 'ko').to_sym
+    config.i18n.default_locale = ENV.fetch("DEFAULT_LOCALE", "ko").to_sym
   end
 end
