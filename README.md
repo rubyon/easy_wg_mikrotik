@@ -1,5 +1,33 @@
 [![Buy me a coffee](https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20coffee&emoji=☕&slug=rubyonstudio&button_colour=FF5F5F&font_colour=ffffff&font_family=Lato&outline_colour=000000&coffee_colour=FFDD00)](https://www.buymeacoffee.com/rubyonstudio)
 
+## 📝 Recent Updates | 최근 업데이트
+
+### Environment Configuration Enhancement | 환경 설정 개선
+- **🔧 Environment Variables**: Migrated from hardcoded values to `.env` configuration for better deployment flexibility
+  - **환경 변수**: 하드코딩된 값에서 `.env` 설정으로 마이그레이션하여 배포 유연성 향상
+- **🌐 Locale Management**: Added `DEFAULT_LOCALE` environment variable to control application language settings
+  - **로케일 관리**: 애플리케이션 언어 설정을 제어하는 `DEFAULT_LOCALE` 환경 변수 추가
+- **📡 MikroTik Configuration**: Replaced `SERVER_ADDRESS` with `MIKROTIK_HOST` and `MIKROTIK_PORT` for clearer router connection settings
+  - **MikroTik 설정**: 명확한 라우터 연결 설정을 위해 `SERVER_ADDRESS`를 `MIKROTIK_HOST`와 `MIKROTIK_PORT`로 대체
+- **🐳 Docker Integration**: Updated Docker Compose configuration to use environment variables
+  - **Docker 통합**: Docker Compose 설정에서 환경 변수 사용하도록 업데이트
+- **📋 Example Configuration**: Added `.env.example` file for easy setup reference
+  - **예시 설정**: 쉬운 설정 참조를 위한 `.env.example` 파일 추가
+- **🔒 Security**: Improved `.gitignore` to protect sensitive environment files while keeping examples
+  - **보안**: 예시 파일은 유지하면서 민감한 환경 파일을 보호하도록 `.gitignore` 개선
+
+### Configuration Files Added | 추가된 설정 파일
+- `.env` - Environment variables for local development | 로컬 개발용 환경 변수
+- `.env.example` - Template file with example configuration values | 예시 설정 값이 포함된 템플릿 파일
+
+### Migration Notes | 마이그레이션 안내
+If upgrading from a previous version, please: | 이전 버전에서 업그레이드하는 경우:
+1. Create a `.env` file based on `.env.example` | `.env.example`을 기반으로 `.env` 파일 생성
+2. Set your MikroTik router IP in `MIKROTIK_HOST` | `MIKROTIK_HOST`에 MikroTik 라우터 IP 설정
+3. Configure your preferred locale in `DEFAULT_LOCALE` | `DEFAULT_LOCALE`에 선호하는 언어 설정
+
+---
+
 # Easy WireGuard MikroTik Manager
 
 A simple and intuitive web interface for managing WireGuard VPN clients on MikroTik routers.

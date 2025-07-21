@@ -34,7 +34,7 @@
             </span>
           <% end %>
           <%= f.text_field :mikrotik_host,
-                value: saved_login&.dig("host"),
+                value: saved_login&.dig("host") || ENV.fetch('MIKROTIK_HOST', '192.168.1.1'),
                 placeholder: t('login.host_placeholder'),
                 class: "wg-input hover:bg-gray-50 group-focus-within:bg-white",
                 required: true %>
@@ -48,7 +48,7 @@
             </span>
           <% end %>
           <%= f.number_field :mikrotik_port,
-                value: saved_login&.dig("port") || "8728",
+                value: saved_login&.dig("port") || ENV.fetch('MIKROTIK_PORT', '8728'),
                 class: "wg-input hover:bg-gray-50 group-focus-within:bg-white" %>
         </div>
       </div>

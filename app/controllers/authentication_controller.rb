@@ -12,11 +12,11 @@ class AuthenticationController < ApplicationController
   # MikroTik 라우터 인증 처리
   # 사용자 입력 정보로 RouterOS API 연결 시도하고 세션에 저장
   def authenticate
-    # 폼에서 전달받은 연결 정보 추출
-    host = params[:mikrotik_host].presence
+    # 폼에서 전달받은 연결 정보 추출, 환경 변수를 기본값으로 사용
+    host = params[:mikrotik_host].presence || ENV.fetch('MIKROTIK_HOST', '192.168.1.1')
     user = params[:mikrotik_user].presence
     password = params[:mikrotik_password].presence
-    port = params[:mikrotik_port].presence || "8728" # 기본 RouterOS API 포트
+    port = params[:mikrotik_port].presence || ENV.fetch('MIKROTIK_PORT', '8728')
     ssl = false # 현재 SSL 연결 비활성화
     remember_me = params[:remember_me] == "1"
 
