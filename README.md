@@ -299,12 +299,42 @@ bin/dev
 - 사용하지 않는 VPN 클라이언트 모니터링 및 제거
 - 의심스러운 활동에 대한 애플리케이션 로그 검토
 
+## 개발
+
+### 코드 품질 명령어
+```bash
+# 보안 스캔 실행
+bundle exec brakeman
+
+# 코드 스타일 검사
+bundle exec rubocop
+erb_lint --lint-all
+
+# 스타일 이슈 자동 수정
+bundle exec rubocop -A
+erb_lint --lint-all --autocorrect
+
+# 테스트 실행
+bin/rails test
+bin/rails test:system
+```
+
+### 프로젝트 구조
+- `app/controllers/clients_controller.rb` - 메인 WireGuard 클라이언트 관리
+- `app/helpers/qr_code_helper.rb` - 안전한 QR 코드 생성
+- `app/javascript/controllers/` - 동적 UI를 위한 Stimulus 컨트롤러
+- `app/views/clients/` - WireGuard 클라이언트 관리 뷰
+- `config/locales/` - 다국어 지원 파일
+
 ## 기여하기
 
-1. 저장소 포크
-2. 기능 브랜치 생성
-3. 변경 사항 적용
-4. 풀 리퀘스트 제출
+1. 저장소를 포크합니다
+2. 기능 브랜치를 생성합니다 (`git checkout -b feature/amazing-feature`)
+3. 적절한 테스트와 함께 변경사항을 만듭니다
+4. 코드 품질 검사를 실행합니다 (`rubocop -A && erb_lint --lint-all --autocorrect`)
+5. 변경사항을 커밋합니다 (`git commit -m 'Add amazing feature'`)
+6. 브랜치에 푸시합니다 (`git push origin feature/amazing-feature`)
+7. Pull Request를 엽니다
 
 ## 라이센스
 
