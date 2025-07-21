@@ -171,6 +171,10 @@ This project is open source and available under the MIT License.
 
 ---
 
+*This README.md was generated with [Claude Code](https://claude.ai/code)*
+
+---
+
 # Easy WireGuard MikroTik Manager (한국어)
 
 MikroTik 라우터에서 WireGuard VPN 클라이언트를 관리할 수 있는 간단하고 직관적인 웹 인터페이스입니다.
@@ -339,3 +343,7 @@ bin/rails test:system
 ## 라이센스
 
 이 프로젝트는 오픈 소스이며 MIT 라이센스 하에 제공됩니다.
+
+---
+
+*이 README.md는 [Claude Code](https://claude.ai/code)로 생성되었습니다*
