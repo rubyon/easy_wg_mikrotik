@@ -89,6 +89,9 @@ zh:
       subnet_note: "🏷️ 分配给客户端的 IP 范围"
       keepalive_label: "Keep Alive（秒）"
       keepalive_note: "⏰ 在 NAT 环境中维持连接的间隔"
+      dns_label: "DNS 服务器"
+      dns_placeholder: "1.1.1.1, 8.8.8.8"
+      dns_note: "🌐 要使用的 DNS 服务器（可选，用逗号分隔）"
     create_button: "🚀 创建客户端"
     cancel_button: "取消"
     notice:

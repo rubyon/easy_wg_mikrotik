@@ -110,6 +110,9 @@ en:
       subnet_note: "🏷️ IP range to assign to clients"
       keepalive_label: "Keep Alive (seconds)"
       keepalive_note: "⏰ Interval for maintaining connection in NAT environments"
+      dns_label: "DNS Servers"
+      dns_placeholder: "1.1.1.1, 8.8.8.8"
+      dns_note: "🌐 DNS servers to use (optional, comma-separated)"
     create_button: "🚀 Create Client"
     cancel_button: "Cancel"
     notice:

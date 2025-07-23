@@ -51,6 +51,7 @@ class ClientsController < ApplicationController
     allowed_ips = params[:allowed_ips]
     subnet_prefix = params[:subnet_prefix].to_s.split(".")[0, 3].join(".")
     persistent_keepalive = params[:persistent_keepalive]
+    dns = params[:dns]
 
     # 인터페이스 이름 필수 검증
     unless interface_name.present?
@@ -109,7 +110,7 @@ class ClientsController < ApplicationController
       end
 
       # 5단계: 클라이언트용 WireGuard 설정 파일 생성
-      @client_config = generate_client_config(private_key, client_address, server_public_key, endpoint, allowed_ips, persistent_keepalive)
+      @client_config = generate_client_config(private_key, client_address, server_public_key, endpoint, allowed_ips, persistent_keepalive, dns)
 
       # 6단계: 모바일 앱 설정용 QR 코드 생성
       @qr_code = generate_qr_code(@client_config)
@@ -323,18 +324,32 @@ class ClientsController < ApplicationController
   # 클라이언트용 WireGuard 설정 파일 생성
   # .conf 파일 형식으로 클라이언트에서 바로 사용 가능한 설정 텍스트 생성
   # [Interface] 섹션과 [Peer] 섹션을 포함한 완전한 설정 파일
-  def generate_client_config(private_key, address, server_pubkey, endpoint, allowed_ips, persistent_keepalive)
-    <<~CONF
+  # DNS가 비어있을 경우 DNS 라인은 제외됨
+  def generate_client_config(private_key, address, server_pubkey, endpoint, allowed_ips, persistent_keepalive, dns = nil)
+    # Interface 섹션 구성
+    interface_section = <<~INTERFACE
       [Interface]
       PrivateKey = #{private_key}
       Address = #{address}
+    INTERFACE
+
+    # DNS가 입력되었고 비어있지 않으면 DNS 라인 추가
+    if dns.present?
+      interface_section += "DNS = #{dns}\n"
+    end
+
+    # Peer 섹션 구성
+    peer_section = <<~PEER
 
       [Peer]
       PublicKey = #{server_pubkey}
       Endpoint = #{endpoint}
       AllowedIPs = #{allowed_ips}
       PersistentKeepalive = #{persistent_keepalive}
-    CONF
+    PEER
+
+    # 전체 설정 파일 반환
+    interface_section + peer_section
   end
 
   # 모바일 WireGuard 앱용 QR 코드 생성

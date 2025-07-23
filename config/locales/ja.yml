@@ -89,6 +89,9 @@ ja:
       subnet_note: "🏷️ クライアントに割り当てるIP範囲"
       keepalive_label: "Keep Alive（秒）"
       keepalive_note: "⏰ NAT環境での接続維持の間隔"
+      dns_label: "DNSサーバー"
+      dns_placeholder: "1.1.1.1, 8.8.8.8"
+      dns_note: "🌐 使用するDNSサーバー（任意、カンマ区切り）"
     create_button: "🚀 クライアント作成"
     cancel_button: "キャンセル"
     notice:

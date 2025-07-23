@@ -194,6 +194,18 @@
                     required: true %>
               <p class="text-xs text-purple-600 bg-purple-50 px-3 py-1 rounded"><%= t('new_client.config_section.keepalive_note') %></p>
             </div>
+
+            <!-- DNS 서버 -->
+            <div class="space-y-3">
+              <label class="flex items-center space-x-2 text-sm font-semibold text-purple-800">
+                <i class="bi bi-router"></i>
+                <span><%= t('new_client.config_section.dns_label') %></span>
+              </label>
+              <%= f.text_field :dns,
+                    placeholder: t('new_client.config_section.dns_placeholder'),
+                    class: "w-full px-4 py-3 border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 bg-white transition-all duration-200 font-mono" %>
+              <p class="text-xs text-purple-600 bg-purple-50 px-3 py-1 rounded"><%= t('new_client.config_section.dns_note') %></p>
+            </div>
           </div>
         </div>
 

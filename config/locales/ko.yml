@@ -89,6 +89,9 @@ ko:
       subnet_note: "🏷️ 클라이언트에게 할당할 IP 범위"
       keepalive_label: "Keep Alive (초)"
       keepalive_note: "⏰ NAT 환경에서 연결 유지를 위한 주기"
+      dns_label: "DNS 서버"
+      dns_placeholder: "1.1.1.1, 8.8.8.8"
+      dns_note: "🌐 사용할 DNS 서버 (선택사항, 쉼표로 구분)"
     create_button: "🚀 클라이언트 생성하기"
     cancel_button: "취소"
     notice:
