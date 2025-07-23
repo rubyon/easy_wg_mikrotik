@@ -1,5 +1,22 @@
 [![Buy me a coffee](https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20coffee&emoji=☕&slug=rubyonstudio&button_colour=FF5F5F&font_colour=ffffff&font_family=Lato&outline_colour=000000&coffee_colour=FFDD00)](https://www.buymeacoffee.com/rubyonstudio)
 
+### Download and deploy directly from Docker Hub
+
+```ruby
+services:
+  easy_wg_mikrotik:
+    image: rubyon/easy_wg_mikrotik
+    container_name: easy_wg_mikrotik
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      RAILS_ENV: development
+      MIKROTIK_HOST: 192.168.88.1
+      MIKROTIK_PORT: 8728
+      DEFAULT_LOCALE: ko
+```
+
 ## 📝 Recent Updates | 최근 업데이트
 
 ### Environment Configuration Enhancement | 환경 설정 개선

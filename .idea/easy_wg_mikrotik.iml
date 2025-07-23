@@ -95,14 +95,14 @@
     <orderEntry type="library" scope="PROVIDED" name="net-smtp (v0.5.1, rbenv: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="net-ssh (v7.3.0, rbenv: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="nio4r (v2.7.4, rbenv: 3.4.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="nokogiri (v1.18.9, rbenv: 3.4.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="nokogiri (v1.18.8, rbenv: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ostruct (v0.6.3, rbenv: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="parallel (v1.27.0, rbenv: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="parser (v3.3.8.0, rbenv: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="pp (v0.6.2, rbenv: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="prettyprint (v0.2.0, rbenv: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="prism (v1.4.0, rbenv: 3.4.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="propshaft (v1.2.1, rbenv: 3.4.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="propshaft (v1.2.0, rbenv: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="psych (v5.2.6, rbenv: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="public_suffix (v6.0.2, rbenv: 3.4.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="puma (v6.6.0, rbenv: 3.4.2) [gem]" level="application" />
