@@ -99,10 +99,10 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t rubyon/easy_wg_mikrotik:${{ env.VERSION }} .
-          docker tag rubyon/easy_wg_mikrotik:${{ env.VERSION }} rubyon/easy_wg_mikrotik:latest
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/easy_wg_mikrotik:${{ env.VERSION }} .
+          docker tag ${{ secrets.DOCKER_USERNAME }}/easy_wg_mikrotik:${{ env.VERSION }} rubyon/easy_wg_mikrotik:latest
 
       - name: Push Docker image
         run: |
-          docker push rubyon/easy_wg_mikrotik:${{ env.VERSION }}
-          docker push rubyon/easy_wg_mikrotik:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/easy_wg_mikrotik:${{ env.VERSION }}
+          docker push ${{ secrets.DOCKER_USERNAME }}/easy_wg_mikrotik:latest
