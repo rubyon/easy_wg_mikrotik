@@ -74,8 +74,21 @@ jobs:
           if-no-files-found: ignore
   build:
     runs-on: ubuntu-latest
+    needs: test
 
     steps:
+      - name: Install packages
+        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y build-essential git libyaml-dev node-gyp pkg-config python-is-python3 google-chrome-stable
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+
       - name: Set version
         run: |
           VERSION=$(TZ=Asia/Seoul date +'%Y%m%d%H%M%S')
