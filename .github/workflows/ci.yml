@@ -105,7 +105,7 @@ jobs:
       - name: Build and Push
         run: |
           docker buildx build \
-            --platform linux/amd64,linux/arm64,linux/arm/v6,linux/arm/v7 \
+            --platform linux/amd64,linux/arm64,linux/arm/v7 \
             -t ${{ secrets.DOCKER_USERNAME }}/easy_wg_mikrotik:${{ env.VERSION }} \
             -t ${{ secrets.DOCKER_USERNAME }}/easy_wg_mikrotik:latest \
             --push .
