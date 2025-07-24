@@ -120,6 +120,6 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: |
             ${{ vars.DOCKER_USERNAME }}/easy_wg_mikrotik:${{ env.VERSION }}
-            ${{ secrets.DOCKER_USERNAME }}/easy_wg_mikrotik:latest
+            ${{ vars.DOCKER_USERNAME }}/easy_wg_mikrotik:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
