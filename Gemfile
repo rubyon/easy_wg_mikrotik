@@ -68,7 +68,7 @@ end
 
 gem "base64"
 gem "dotenv-rails"
-gem "rails-i18n", "~> 8.0.0"
+gem "rails-i18n", "~> 8.0.2"
 gem "rbnacl"
 gem "routeros-api"
 gem "rqrcode"
